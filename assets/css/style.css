@@ -5,10 +5,18 @@
 }
 
 .tile {
-    height: 50px;
-    width: 50px;
-    margin: 2px;
     border-radius: 4px;
-    border: 1px solid grey;
     position: absolute;
+    row: 0;
+    col: 0;
+}
+
+#trophy {
+    color : gold;
+    font-size : 200%;
+}
+
+#timer {
+    color: silver;
+    font-size : 200%;
 }
