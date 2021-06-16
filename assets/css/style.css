@@ -1,0 +1,14 @@
+#game-name {
+    text-align: center;
+    color: red;
+    font-size: 200%;
+}
+
+.tile {
+    height: 50px;
+    width: 50px;
+    margin: 2px;
+    border-radius: 4px;
+    border: 1px solid grey;
+    position: absolute;
+}
