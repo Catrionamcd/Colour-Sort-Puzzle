@@ -7,9 +7,13 @@ const tileCol = 5;
 const tileRow = 5;
 const tileWidth = 50;
 const tileGap = 6;
-const tileLeft = 200;
 const tileTop = 100;
+const tileLeft = 200;
 const tileBorder = 10;
+
+var blankTileId = 0;
+var blankTileTop = 0;
+var bankTileLeft = 0;
 
 // There are six different colour tiles in the colour grid. Each colour appears 4 times
 
@@ -38,6 +42,8 @@ createDottedLine();
 
 createTileGrid();
 
+// Function to create the colour tile grid
+
 function createTileGrid() {
 
   let colorCount = 0;
@@ -55,8 +61,8 @@ function createTileGrid() {
       let newTile = document.createElement('div');
         newTile.className = ('tile');
         newTile.id = ('tile-id', tileId);
-        newTile.style.left = (currTileLeft + 'px');
         newTile.style.top = (currTileTop + 'px');
+        newTile.style.left = (currTileLeft + 'px');
         newTile.style.height = tileWidth + 'px';
         newTile.style.width = tileWidth + 'px';
 
@@ -64,11 +70,19 @@ function createTileGrid() {
                  
         gridAreaDiv.appendChild(newTile);
 
+        if (nextRow == (tileRow - 1) && nextCol == (tileCol - 1)) {
+          blankTileId = newTile.id;
+          blankTileTop = currTileTop;
+          blankTileLeft = currTileLeft;
+        } 
+
+
+        newTile.onclick = function() {tileClicked(this.id, this.style.left, this.style.top)};
+
         currTileLeft += (tileWidth + tileGap);
         ++colorCount;
         ++tileId;
-        console.log('First Add', tileId);
-        
+                
         if (colorCount >= maxTileColor) {
           colorCount = 0;
           ++currColor;
@@ -76,9 +90,9 @@ function createTileGrid() {
       }
 
       currTileTop += (tileWidth + tileGap);
-      
     }
-} 
+  }
+     
 
 /* Function to render the black background for the colour tile grid.
    Calculate the size of that background by adding border, tile widths
@@ -117,4 +131,14 @@ function createDottedLine() {
   dottedline.style.borderColor = "white";
   gridAreaDiv.appendChild(dottedline);
 
+}
+
+function tileClicked(tileClickedId, tileClickedTop, tileClickedLeft) {
+  if (tileClickedId == (tileRow * tileCol - 1)) {
+    console.log('Blank Tile', tileClickedId);
+    return
+  } else {
+    console.log('Tile', tileClickedId, tileClickedTop, tileClickedLeft);
+    console.log(blankTileId, blankTileTop, blankTileLeft);
+  }
 }
