@@ -26,6 +26,11 @@ const gridAreaDiv = document.getElementById('grid-area');
 
 createBlackBackground();
 
+/* Call the Create Dotted line function to render a dotted line around the nine inner tiles
+   that will have to match with the 9 tiles on the dice
+*/
+
+createDottedLine();
 /*  Call the create tile grid function. This funtion displays 5 columns & 5 rows 
     of the  different colour tiles
 */ 
@@ -34,7 +39,7 @@ createTileGrid();
 
 function createTileGrid() {
 
-  const newDiv2 = document.createElement("div");
+  /*const newDiv2 = document.createElement("div");
   newDiv2.style.position = "absolute";
   newDiv2.style.width = ((tileCol - 2) * tileWidth) + ((tileCol - 2) * tileGap) - 1 + "px";
   newDiv2.style.height = ((tileRow - 2) * tileWidth) + ((tileRow - 2) * tileGap) -1 + "px";
@@ -45,6 +50,7 @@ function createTileGrid() {
   newDiv2.style.borderWidth = "thin";
   newDiv2.style.borderColor = "white";
   gridAreaDiv.appendChild(newDiv2);
+  */
 
     let colorCount = 0;
     let currColor = 0;
@@ -80,6 +86,8 @@ function createTileGrid() {
     }
 } 
 
+// Function to render the black background for the colour grid
+
 function createBlackBackground() {
 
   const back = document.createElement("div");
@@ -90,5 +98,23 @@ function createBlackBackground() {
   back.style.top = tileTop + "px";
   back.style.background = "black";
   gridAreaDiv.appendChild(back);
+
+}
+
+// Function to render the dotted line arounf the inner 9 tiles that will have to be matched with the dice
+
+function createDottedLine() {
+
+  const dottedline = document.createElement("div");
+  dottedline.style.position = "absolute";
+  dottedline.style.width = ((tileCol - 2) * tileWidth) + ((tileCol - 2) * tileGap) - 1 + "px";
+  dottedline.style.height = ((tileRow - 2) * tileWidth) + ((tileRow - 2) * tileGap) -1 + "px";
+  dottedline.style.left = tileLeft + tileBorder + tileWidth + Math.floor(tileGap / 2) + "px";
+  dottedline.style.top = tileTop + tileBorder + tileWidth + Math.floor(tileGap / 2) + "px";
+  dottedline.style.background = "";
+  dottedline.style.borderStyle = "dashed";
+  dottedline.style.borderWidth = "thin";
+  dottedline.style.borderColor = "white";
+  gridAreaDiv.appendChild(dottedline);
 
 }
