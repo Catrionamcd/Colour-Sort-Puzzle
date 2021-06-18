@@ -1,6 +1,6 @@
 /* Set the variables for columns & rows to 5
-   Set the variable for tile width to 40 & gap between each tile to 4
-   Set the position of tile left to 20 & top to 30
+   Set the variable for tile width to 40 & gap between each tile to 6
+   Set the position of tile left to 200 & top to 100
 */
    
 const tileCol = 5;
@@ -31,7 +31,8 @@ createBlackBackground();
 */
 
 createDottedLine();
-/*  Call the create tile grid function. This funtion displays 5 columns & 5 rows 
+
+/*  Call the Create tile grid function. This funtion displays 5 columns & 5 rows 
     of the  different colour tiles
 */ 
 
@@ -39,54 +40,50 @@ createTileGrid();
 
 function createTileGrid() {
 
-  /*const newDiv2 = document.createElement("div");
-  newDiv2.style.position = "absolute";
-  newDiv2.style.width = ((tileCol - 2) * tileWidth) + ((tileCol - 2) * tileGap) - 1 + "px";
-  newDiv2.style.height = ((tileRow - 2) * tileWidth) + ((tileRow - 2) * tileGap) -1 + "px";
-  newDiv2.style.left = tileLeft + tileBorder + tileWidth + Math.floor(tileGap / 2) + "px";
-  newDiv2.style.top = tileTop + tileBorder + tileWidth + Math.floor(tileGap / 2) + "px";
-  newDiv2.style.background = "";
-  newDiv2.style.borderStyle = "dashed";
-  newDiv2.style.borderWidth = "thin";
-  newDiv2.style.borderColor = "white";
-  gridAreaDiv.appendChild(newDiv2);
-  */
-
-    let colorCount = 0;
-    let currColor = 0;
+  let colorCount = 0;
+  let currColor = 0;
+  let tileId = 0;
     
-    let currTileTop = tileTop + tileBorder;
+  let currTileTop = tileTop + tileBorder;
         
-    for (nextRow = 0; nextRow < tileRow; ++nextRow) {
+  for (nextRow = 0; nextRow < tileRow; ++nextRow) {
                 
-        let currTileLeft = tileLeft + tileBorder;
+    let currTileLeft = tileLeft + tileBorder;
 
-        for (nextCol = 0; nextCol < tileCol; ++nextCol) {
+    for (nextCol = 0; nextCol < tileCol; ++nextCol) {
            
-          let newTile = document.createElement('div');
-          newTile.className = ('tile');
-          newTile.style.left = (currTileLeft + 'px');
-          newTile.style.top = (currTileTop + 'px');
-          newTile.style.height = tileWidth + 'px';
-          newTile.style.width = tileWidth + 'px';
+      let newTile = document.createElement('div');
+        newTile.className = ('tile');
+        newTile.id = ('tile-id', tileId);
+        newTile.style.left = (currTileLeft + 'px');
+        newTile.style.top = (currTileTop + 'px');
+        newTile.style.height = tileWidth + 'px';
+        newTile.style.width = tileWidth + 'px';
 
-          newTile.style.backgroundColor =(tileColors[currColor]);
+        newTile.style.backgroundColor =(tileColors[currColor]);
                  
-          gridAreaDiv.appendChild(newTile);
+        gridAreaDiv.appendChild(newTile);
 
-          currTileLeft += (tileWidth + tileGap);
-          ++colorCount;
-          
-          if (colorCount >= maxTileColor) {
-            colorCount = 0;
-            ++currColor;
-          }
+        currTileLeft += (tileWidth + tileGap);
+        ++colorCount;
+        ++tileId;
+        console.log('First Add', tileId);
+        
+        if (colorCount >= maxTileColor) {
+          colorCount = 0;
+          ++currColor;
         }
-        currTileTop += (tileWidth + tileGap);
+      }
+
+      currTileTop += (tileWidth + tileGap);
+      
     }
 } 
 
-// Function to render the black background for the colour grid
+/* Function to render the black background for the colour tile grid.
+   Calculate the size of that background by adding border, tile widths
+   and gaps between tiles
+*/
 
 function createBlackBackground() {
 
@@ -101,7 +98,10 @@ function createBlackBackground() {
 
 }
 
-// Function to render the dotted line arounf the inner 9 tiles that will have to be matched with the dice
+/* Function to render the dotted line around the inner nine tiles on the colour grid. 
+   The colour tiles inside the dotted line will have to match the nine colour files on 
+   the dice.  
+*/
 
 function createDottedLine() {
 
@@ -111,7 +111,7 @@ function createDottedLine() {
   dottedline.style.height = ((tileRow - 2) * tileWidth) + ((tileRow - 2) * tileGap) -1 + "px";
   dottedline.style.left = tileLeft + tileBorder + tileWidth + Math.floor(tileGap / 2) + "px";
   dottedline.style.top = tileTop + tileBorder + tileWidth + Math.floor(tileGap / 2) + "px";
-  dottedline.style.background = "";
+  //dottedline.style.background = "";
   dottedline.style.borderStyle = "dashed";
   dottedline.style.borderWidth = "thin";
   dottedline.style.borderColor = "white";
