@@ -16,6 +16,16 @@ const tileBorder = 10;
 const tileColors = ['red', 'green', 'yellow', 'blue', 'white', 'orange'];
 const maxTileColor = 4;
  
+// Get the grid area from the html div by it's grid area id
+
+const gridAreaDiv = document.getElementById('grid-area');
+
+/* Call the Create Black Background function to render a black background on the screen
+   behind the colour grid
+*/
+
+createBlackBackground();
+
 /*  Call the create tile grid function. This funtion displays 5 columns & 5 rows 
     of the  different colour tiles
 */ 
@@ -23,16 +33,6 @@ const maxTileColor = 4;
 createTileGrid();
 
 function createTileGrid() {
-  const gridAreaDiv = document.getElementById('grid-area');
-
-  const newDiv1 = document.createElement("div");
-  newDiv1.style.position = "absolute";
-  newDiv1.style.width = (tileBorder * 2) + (tileCol * tileWidth) + ((tileCol - 1) * tileGap) + "px";
-  newDiv1.style.height = (tileBorder * 2) + (tileRow * tileWidth) + ((tileRow - 1) * tileGap) + "px";
-  newDiv1.style.left = tileLeft + "px";
-  newDiv1.style.top = tileTop + "px";
-  newDiv1.style.background = "black";
-  gridAreaDiv.appendChild(newDiv1);
 
   const newDiv2 = document.createElement("div");
   newDiv2.style.position = "absolute";
@@ -66,8 +66,7 @@ function createTileGrid() {
 
           newTile.style.backgroundColor =(tileColors[currColor]);
                  
-          ///let gameAreaDiv = document.getElementById('grid-area');
-              gridAreaDiv.appendChild(newTile);
+          gridAreaDiv.appendChild(newTile);
 
           currTileLeft += (tileWidth + tileGap);
           ++colorCount;
@@ -80,3 +79,16 @@ function createTileGrid() {
         currTileTop += (tileWidth + tileGap);
     }
 } 
+
+function createBlackBackground() {
+
+  const back = document.createElement("div");
+  back.style.position = "absolute";
+  back.style.width = (tileBorder * 2) + (tileCol * tileWidth) + ((tileCol - 1) * tileGap) + "px";
+  back.style.height = (tileBorder * 2) + (tileRow * tileWidth) + ((tileRow - 1) * tileGap) + "px";
+  back.style.left = tileLeft + "px";
+  back.style.top = tileTop + "px";
+  back.style.background = "black";
+  gridAreaDiv.appendChild(back);
+
+}
