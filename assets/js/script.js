@@ -135,23 +135,25 @@ function createDottedLine() {
 function tileClicked(tileId) {
   
   let clickedTile = document.getElementById(tileId);
+
+  console.log(clickedTile);
+  console.log(blankTileId);
+  console.log(blankTileTop);
+  console.log(blankTileLeft);
   
   let checkValueTop = parseInt(clickedTile.style.top, 10);
   let checkValueLeft = parseInt(clickedTile.style.left, 10);
   
-  if (checkValueTop == blankTileTop) {
-    let calcSpace = (blankTileLeft - checkValueLeft);
+  let calcSpaceTop = Math.abs(blankTileTop - checkValueTop);
+  let calcSpaceLeft = Math.abs(blankTileLeft - checkValueLeft);
 
-    if (calcSpace == tileWidth + tileGap) {
+  if (calcSpaceTop == tileWidth + tileGap || calcSpaceLeft == tileWidth + tileGap) {
       let holdValueTop = blankTileTop;
       let holdValueLeft = blankTileLeft;
-      blankTileTop = checkValueTop;
-      blankTileLeft = checkValueLeft;
-      clickedTile.style.top = (holdValueTop + 'px');
-      clickedTile.style.left = (holdValueLeft + 'px');
-      console.log(clickedTile.style.top);
-      console.log(clickedTile.style.left.left);
-    }
+      blankTileTop = checkValueTop + 'px';
+      blankTileLeft = checkValueLeft + 'px';
+      clickedTile.style.top = holdValueTop + 'px';
+      clickedTile.style.left = holdValueLeft + 'px';
   }
-  
 }
+
