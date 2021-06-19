@@ -59,39 +59,38 @@ function createTileGrid() {
     for (nextCol = 0; nextCol < tileCol; ++nextCol) {
            
       let newTile = document.createElement('div');
-        newTile.className = ('tile');
-        newTile.id = ('tile-id', tileId);
-        newTile.style.top = (currTileTop + 'px');
-        newTile.style.left = (currTileLeft + 'px');
-        newTile.style.height = tileWidth + 'px';
-        newTile.style.width = tileWidth + 'px';
-
-        newTile.style.backgroundColor =(tileColors[currColor]);
+      
+      newTile.className = ('tile');
+      newTile.id = ('tile-id', tileId);
+      newTile.style.top = (currTileTop + 'px');
+      newTile.style.left = (currTileLeft + 'px');
+      newTile.style.height = tileWidth + 'px';
+      newTile.style.width = tileWidth + 'px';
+      newTile.style.backgroundColor =(tileColors[currColor]);
                  
-        gridAreaDiv.appendChild(newTile);
+      gridAreaDiv.appendChild(newTile);
 
-        if (nextRow == (tileRow - 1) && nextCol == (tileCol - 1)) {
+      if (nextRow == (tileRow - 1) && nextCol == (tileCol - 1)) {
           blankTileId = newTile.id;
           blankTileTop = currTileTop;
           blankTileLeft = currTileLeft;
-        } 
+      } 
 
+      newTile.onclick = function() {tileClicked(this.id)};
 
-        newTile.onclick = function() {tileClicked(this.id, this.style.left, this.style.top)};
-
-        currTileLeft += (tileWidth + tileGap);
-        ++colorCount;
-        ++tileId;
+      currTileLeft += (tileWidth + tileGap);
+      ++colorCount;
+      ++tileId;
                 
-        if (colorCount >= maxTileColor) {
+      if (colorCount >= maxTileColor) {
           colorCount = 0;
           ++currColor;
-        }
       }
-
-      currTileTop += (tileWidth + tileGap);
     }
+
+    currTileTop += (tileWidth + tileGap);
   }
+}
      
 
 /* Function to render the black background for the colour tile grid.
@@ -133,12 +132,26 @@ function createDottedLine() {
 
 }
 
-function tileClicked(tileClickedId, tileClickedTop, tileClickedLeft) {
-  if (tileClickedId == (tileRow * tileCol - 1)) {
-    console.log('Blank Tile', tileClickedId);
-    return
-  } else {
-    console.log('Tile', tileClickedId, tileClickedTop, tileClickedLeft);
-    console.log(blankTileId, blankTileTop, blankTileLeft);
+function tileClicked(tileId) {
+  
+  let clickedTile = document.getElementById(tileId);
+  
+  let checkValueTop = parseInt(clickedTile.style.top, 10);
+  let checkValueLeft = parseInt(clickedTile.style.left, 10);
+  
+  if (checkValueTop == blankTileTop) {
+    let calcSpace = (blankTileLeft - checkValueLeft);
+
+    if (calcSpace == tileWidth + tileGap) {
+      let holdValueTop = blankTileTop;
+      let holdValueLeft = blankTileLeft;
+      blankTileTop = checkValueTop;
+      blankTileLeft = checkValueLeft;
+      clickedTile.style.top = (holdValueTop + 'px');
+      clickedTile.style.left = (holdValueLeft + 'px');
+      console.log(clickedTile.style.top);
+      console.log(clickedTile.style.left.left);
+    }
   }
+  
 }
