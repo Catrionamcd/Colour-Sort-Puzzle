@@ -6,7 +6,7 @@
 const tileCol = 5;
 const tileRow = 5;
 const tileWidth = 50;
-const tileGap = 6;
+const tileGap = 8;
 const tileTop = 100;
 const tileLeft = 200;
 const tileBorder = 10;
@@ -14,8 +14,8 @@ const tileBorder = 10;
 const diceCol = 3;
 const diceRow = 3;
 const diceTileWidth = 50;
-const diceTileGap = 6;
-const diceTileTop = 100;
+const diceTileGap = 8;
+const diceTileTop = 158;
 const diceTileLeft = 600;
 const diceTileBorder = 10;
 
