@@ -11,6 +11,14 @@ const tileTop = 100;
 const tileLeft = 200;
 const tileBorder = 10;
 
+const diceCol = 3;
+const diceRow = 3;
+const diceTileWidth = 50;
+const diceTileGap = 6;
+const diceTileTop = 100;
+const diceTileLeft = 600;
+const diceTileBorder = 10;
+
 var blankTileId = 0;
 
 // There are six different colour tiles in the colour grid. Each colour appears 4 times
@@ -39,6 +47,17 @@ createDottedLine();
 */ 
 
 createTileGrid();
+
+/*  Call the Create tile dice function. This function displays 9 colors tiles in 3 
+    rows & 3 columns. The nine inner tiles on the coloue grid will have to match these
+    9 tiles
+*/
+
+createDiceBackground();
+
+createDiceDottedLine();
+
+//createDiceGrid();
 
 // Function to create the colour tile grid
 
@@ -107,6 +126,24 @@ function createBlackBackground() {
 
 }
 
+/* Function to render the black background for the dice tile grid.
+   Calculate the size of that background by using the border, tile widths
+   and gaps between tiles for the dice grid
+*/
+
+function createDiceBackground() {
+
+  const back = document.createElement("div");
+  back.style.position = "absolute";
+  back.style.width = (diceTileBorder * 2) + (diceCol * diceTileWidth) + ((diceCol - 1) * diceTileGap) + "px";
+  back.style.height = (diceTileBorder * 2) + (diceRow * diceTileWidth) + ((diceRow - 1) * diceTileGap) + "px";
+  back.style.left = diceTileLeft + "px";
+  back.style.top = diceTileTop + "px";
+  back.style.background = "black";
+  gridAreaDiv.appendChild(back);
+
+}
+
 /* Function to render the dotted line around the inner nine tiles on the colour grid. 
    The colour tiles inside the dotted line will have to match the nine colour files on 
    the dice.  
@@ -120,13 +157,36 @@ function createDottedLine() {
   dottedline.style.height = ((tileRow - 2) * tileWidth) + ((tileRow - 2) * tileGap) -1 + "px";
   dottedline.style.left = tileLeft + tileBorder + tileWidth + Math.floor(tileGap / 2) + "px";
   dottedline.style.top = tileTop + tileBorder + tileWidth + Math.floor(tileGap / 2) + "px";
-  //dottedline.style.background = "";
   dottedline.style.borderStyle = "dashed";
   dottedline.style.borderWidth = "thin";
   dottedline.style.borderColor = "white";
   gridAreaDiv.appendChild(dottedline);
 
 }
+
+// Function to render the dotted line around the dice grid. 
+   
+
+function createDiceDottedLine() { 
+
+  const dottedline = document.createElement("div");
+  dottedline.style.position = "absolute";
+  dottedline.style.width = (diceTileBorder + (diceCol * diceTileWidth) + ((diceCol - 1) * diceTileGap)) + "px";
+  dottedline.style.height = (diceTileBorder + (diceRow * diceTileWidth) + ((diceRow - 1) * diceTileGap)) + "px";
+  console.log(dottedline.style.width);
+  console.log(dottedline.style.height);
+  dottedline.style.left = diceTileLeft + Math.floor(diceTileBorder / 2) + "px";
+  dottedline.style.top = diceTileTop + Math.floor(diceTileBorder / 2) + "px";
+  console.log(dottedline.style.left);
+  console.log(dottedline.style.top);
+  dottedline.style.borderStyle = "dashed";
+  dottedline.style.borderWidth = "thin";
+  dottedline.style.borderColor = "white";
+  gridAreaDiv.appendChild(dottedline);
+
+}
+
+//  Function for when a tile is clicked to be moved
 
 function tileClicked(tileId) {
   
