@@ -125,10 +125,10 @@ function createDiceGrid() {
            
       let newTile = document.createElement('div');
       
-      newTile.className = ('tile');
+      newTile.className = 'dice';
       newTile.id = ('tile-id', tileId);
-      newTile.style.top = (currTileTop + 'px');
-      newTile.style.left = (currTileLeft + 'px');
+      newTile.style.top = currTileTop + 'px';
+      newTile.style.left = currTileLeft + 'px';
       newTile.style.height = diceTileWidth + 'px';
       newTile.style.width = diceTileWidth + 'px';
       newTile.style.backgroundColor =(tileColors[currColor]);
@@ -147,6 +147,7 @@ function createDiceGrid() {
 
     currTileTop += (diceTileWidth + diceTileGap);
   }
+
 }
 
 /* Function to render the black background for the colour tile grid.
@@ -213,12 +214,8 @@ function createDiceDottedLine() {
   dottedline.style.position = "absolute";
   dottedline.style.width = (diceTileBorder + (diceCol * diceTileWidth) + ((diceCol - 1) * diceTileGap)) + "px";
   dottedline.style.height = (diceTileBorder + (diceRow * diceTileWidth) + ((diceRow - 1) * diceTileGap)) + "px";
-  console.log(dottedline.style.width);
-  console.log(dottedline.style.height);
   dottedline.style.left = diceTileLeft + Math.floor(diceTileBorder / 2) + "px";
   dottedline.style.top = diceTileTop + Math.floor(diceTileBorder / 2) + "px";
-  console.log(dottedline.style.left);
-  console.log(dottedline.style.top);
   dottedline.style.borderStyle = "dashed";
   dottedline.style.borderWidth = "thin";
   dottedline.style.borderColor = "white";
@@ -226,6 +223,18 @@ function createDiceDottedLine() {
 
 }
 
+//  Function to mix up the colours on the DICE grid.
+
+function mixDiceColours() {
+  
+  let mixTile = document.getElementsByClassName('dice');
+  for (let i = 0; i < mixTile.length; i++) {
+    const randomColor = Math.floor(Math.random() * 6);
+    mixTile[i].style.backgroundColor = tileColors[randomColor];
+    
+  }
+} 
+  
 //  Function for when a tile is clicked to be moved
 
 function tileClicked(tileId) {
