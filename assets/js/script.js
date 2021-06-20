@@ -135,25 +135,22 @@ function createDottedLine() {
 function tileClicked(tileId) {
   
   let clickedTile = document.getElementById(tileId);
-
-  console.log(clickedTile);
-  console.log(blankTileId);
-  console.log(blankTileTop);
-  console.log(blankTileLeft);
+  let blankTile = document.getElementById(blankTileId);
   
-  let checkValueTop = parseInt(clickedTile.style.top, 10);
-  let checkValueLeft = parseInt(clickedTile.style.left, 10);
-  
-  let calcSpaceTop = Math.abs(blankTileTop - checkValueTop);
-  let calcSpaceLeft = Math.abs(blankTileLeft - checkValueLeft);
+  let clickedTileTop = parseInt(clickedTile.style.top, 10);
+  let clickedTileLeft = parseInt(clickedTile.style.left, 10);
+  let blankTileTop = parseInt(blankTile.style.top, 10);
+  let blankTileLeft = parseInt(blankTile.style.left, 10);
 
-  if (calcSpaceTop == tileWidth + tileGap || calcSpaceLeft == tileWidth + tileGap) {
-      let holdValueTop = blankTileTop;
-      let holdValueLeft = blankTileLeft;
-      blankTileTop = checkValueTop + 'px';
-      blankTileLeft = checkValueLeft + 'px';
-      clickedTile.style.top = holdValueTop + 'px';
-      clickedTile.style.left = holdValueLeft + 'px';
+  let calcSpaceTop = Math.abs(blankTileTop - clickedTileTop);
+  let calcSpaceLeft = Math.abs(blankTileLeft - clickedTileLeft);
+
+  if ((calcSpaceLeft == 0 && calcSpaceTop == tileWidth + tileGap) || (calcSpaceTop == 0 && calcSpaceLeft == tileWidth + tileGap)) {
+      blankTile.style.top = clickedTileTop + 'px';
+      blankTile.style.left = clickedTileLeft + 'px';
+      clickedTile.style.top = blankTileTop + 'px';
+      clickedTile.style.left = blankTileLeft + 'px';
   }
+
 }
 
