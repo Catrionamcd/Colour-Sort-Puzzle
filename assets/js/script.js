@@ -12,8 +12,6 @@ const tileLeft = 200;
 const tileBorder = 10;
 
 var blankTileId = 0;
-var blankTileTop = 0;
-var bankTileLeft = 0;
 
 // There are six different colour tiles in the colour grid. Each colour appears 4 times
 
@@ -68,15 +66,13 @@ function createTileGrid() {
       newTile.style.width = tileWidth + 'px';
       newTile.style.backgroundColor =(tileColors[currColor]);
                  
-      gridAreaDiv.appendChild(newTile);
-
       if (nextRow == (tileRow - 1) && nextCol == (tileCol - 1)) {
-          blankTileId = newTile.id;
-          blankTileTop = currTileTop;
-          blankTileLeft = currTileLeft;
-      } 
+        blankTileId = newTile.id;
+      } else {
+        newTile.onclick = function() {tileClicked(this.id)};
+      }
 
-      newTile.onclick = function() {tileClicked(this.id)};
+      gridAreaDiv.appendChild(newTile);
 
       currTileLeft += (tileWidth + tileGap);
       ++colorCount;
