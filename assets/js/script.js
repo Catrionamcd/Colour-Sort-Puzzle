@@ -57,7 +57,7 @@ createDiceBackground();
 
 createDiceDottedLine();
 
-//createDiceGrid();
+createDiceGrid();
 
 // Function to create the colour tile grid
 
@@ -107,6 +107,47 @@ function createTileGrid() {
   }
 }
      
+// Function to create the colour DICE grid
+
+function createDiceGrid() {
+
+  let colorCount = 0;
+  let currColor = 0;
+  let tileId = 0;
+    
+  let currTileTop = diceTileTop + diceTileBorder;
+        
+  for (nextRow = 0; nextRow < diceRow; ++nextRow) {
+                
+    let currTileLeft = diceTileLeft + diceTileBorder;
+
+    for (nextCol = 0; nextCol < diceCol; ++nextCol) {
+           
+      let newTile = document.createElement('div');
+      
+      newTile.className = ('tile');
+      newTile.id = ('tile-id', tileId);
+      newTile.style.top = (currTileTop + 'px');
+      newTile.style.left = (currTileLeft + 'px');
+      newTile.style.height = diceTileWidth + 'px';
+      newTile.style.width = diceTileWidth + 'px';
+      newTile.style.backgroundColor =(tileColors[currColor]);
+                 
+      gridAreaDiv.appendChild(newTile);
+
+      currTileLeft += (diceTileWidth + diceTileGap);
+      ++colorCount;
+      ++tileId;
+                
+      if (colorCount >= maxTileColor) {
+          colorCount = 0;
+          ++currColor;
+      }
+    }
+
+    currTileTop += (diceTileWidth + diceTileGap);
+  }
+}
 
 /* Function to render the black background for the colour tile grid.
    Calculate the size of that background by adding border, tile widths
@@ -165,8 +206,7 @@ function createDottedLine() {
 }
 
 // Function to render the dotted line around the dice grid. 
-   
-
+ 
 function createDiceDottedLine() { 
 
   const dottedline = document.createElement("div");
