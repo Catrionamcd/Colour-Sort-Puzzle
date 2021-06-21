@@ -21,6 +21,7 @@ const diceTileBorder = 10;
 
 var blankTileId = 0;
 var diceColourArray = new Array(diceRows * diceCols);
+var gridColourArray = new Array(diceRows * diceCols);
 
 
 // There are six different colour tiles in the colour grid. Each colour appears 4 times
@@ -259,6 +260,8 @@ function tileClicked(tileId) {
       clickedTile.style.left = blankTileLeft + 'px';
   }
 storeDiceColours();
+
+storeGridColours();
 }
 
 /* Function to store the DICE colours in an array so they can be checked
@@ -272,9 +275,9 @@ function storeDiceColours() {
   const allDice = document.getElementsByClassName('dice');
 
   for (let i = 0; i < allDice.length; i++) {
-    const topDiff = parseInt(allDice[i].style.top) - startTop;
-    const leftDiff = parseInt(allDice[i].style.left) - startLeft;
-    const rowPos = topDiff / (diceTileWidth + diceTileGap);
+    const topDiff = parseInt(allDice[i].style.top) - startTop;   // diff between top of tile & start top
+    const leftDiff = parseInt(allDice[i].style.left) - startLeft; // diff between left of tile & start left
+    const rowPos = topDiff / (diceTileWidth + diceTileGap);  //get row position of tile by 
     const colPos = leftDiff / (diceTileWidth + diceTileGap);
     diceColourArray[rowPos * diceCols + colPos] = allDice[i].style.backgroundColor;
   }
@@ -286,7 +289,24 @@ function storeDiceColours() {
 */
 function storeGridColours() {
 
+  let startTop = tileTop + tileBorder + tileWidth + tileGap;
+  let startLeft = tileLeft + tileBorder +tileWidth + tileGap;
+  const allGrid = document.getElementsByClassName('tile');
+
+  for (let i = 0; i < allGrid.length; i++) {
+    const topDiff = parseInt(allGrid[i].style.top) - startTop;
+    const leftDiff = parseInt(allGrid[i].style.left) - startLeft;
+    const rowPos = topDiff / (tileWidth + tileGap);
+    const colPos = leftDiff / (tileWidth + tileGap);
+
+    if (rowPos < 0 || colPos < 0 || rowPos >= diceRows || colPos >= diceCols) {
+      continue;
+    }
+    gridColourArray[rowPos * diceCols + colPos] = allGrid[i].style.backgroundColor;
+  }
+  console.log (gridColourArray);
 }
+
 
 // Function to check if tiles match
 
