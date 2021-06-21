@@ -3,23 +3,25 @@
    Set the position of tile left to 200 & top to 100
 */
    
-const tileCol = 5;
-const tileRow = 5;
+const tileCols = 5;
+const tileRows = 5;
 const tileWidth = 50;
 const tileGap = 8;
-const tileTop = 100;
+const tileTop = 200;
 const tileLeft = 200;
 const tileBorder = 10;
 
-const diceCol = 3;
-const diceRow = 3;
+const diceCols = 3;
+const diceRows = 3;
 const diceTileWidth = 50;
 const diceTileGap = 8;
-const diceTileTop = 158;
+const diceTileTop = 258;
 const diceTileLeft = 600;
 const diceTileBorder = 10;
 
 var blankTileId = 0;
+var diceColourArray = new Array(diceRows * diceCols);
+
 
 // There are six different colour tiles in the colour grid. Each colour appears 4 times
 
@@ -69,11 +71,11 @@ function createTileGrid() {
     
   let currTileTop = tileTop + tileBorder;
         
-  for (nextRow = 0; nextRow < tileRow; ++nextRow) {
+  for (nextRow = 0; nextRow < tileRows; ++nextRow) {
                 
     let currTileLeft = tileLeft + tileBorder;
 
-    for (nextCol = 0; nextCol < tileCol; ++nextCol) {
+    for (nextCol = 0; nextCol < tileCols; ++nextCol) {
            
       let newTile = document.createElement('div');
       
@@ -84,8 +86,8 @@ function createTileGrid() {
       newTile.style.height = tileWidth + 'px';
       newTile.style.width = tileWidth + 'px';
       newTile.style.backgroundColor =(tileColors[currColor]);
-                 
-      if (nextRow == (tileRow - 1) && nextCol == (tileCol - 1)) {
+
+      if (nextRow == (tileRows - 1) && nextCol == (tileCols - 1)) {
         blankTileId = newTile.id;
       } else {
         newTile.onclick = function() {tileClicked(this.id)};
@@ -117,11 +119,11 @@ function createDiceGrid() {
     
   let currTileTop = diceTileTop + diceTileBorder;
         
-  for (nextRow = 0; nextRow < diceRow; ++nextRow) {
+  for (nextRow = 0; nextRow < diceRows; ++nextRow) {
                 
     let currTileLeft = diceTileLeft + diceTileBorder;
 
-    for (nextCol = 0; nextCol < diceCol; ++nextCol) {
+    for (nextCol = 0; nextCol < diceCols; ++nextCol) {
            
       let newTile = document.createElement('div');
       
@@ -159,8 +161,8 @@ function createBlackBackground() {
 
   const back = document.createElement("div");
   back.style.position = "absolute";
-  back.style.width = (tileBorder * 2) + (tileCol * tileWidth) + ((tileCol - 1) * tileGap) + "px";
-  back.style.height = (tileBorder * 2) + (tileRow * tileWidth) + ((tileRow - 1) * tileGap) + "px";
+  back.style.width = (tileBorder * 2) + (tileCols * tileWidth) + ((tileCols - 1) * tileGap) + "px";
+  back.style.height = (tileBorder * 2) + (tileRows * tileWidth) + ((tileRows - 1) * tileGap) + "px";
   back.style.left = tileLeft + "px";
   back.style.top = tileTop + "px";
   back.style.background = "black";
@@ -177,8 +179,8 @@ function createDiceBackground() {
 
   const back = document.createElement("div");
   back.style.position = "absolute";
-  back.style.width = (diceTileBorder * 2) + (diceCol * diceTileWidth) + ((diceCol - 1) * diceTileGap) + "px";
-  back.style.height = (diceTileBorder * 2) + (diceRow * diceTileWidth) + ((diceRow - 1) * diceTileGap) + "px";
+  back.style.width = (diceTileBorder * 2) + (diceCols * diceTileWidth) + ((diceCols - 1) * diceTileGap) + "px";
+  back.style.height = (diceTileBorder * 2) + (diceRows * diceTileWidth) + ((diceRows - 1) * diceTileGap) + "px";
   back.style.left = diceTileLeft + "px";
   back.style.top = diceTileTop + "px";
   back.style.background = "black";
@@ -195,8 +197,8 @@ function createDottedLine() {
 
   const dottedline = document.createElement("div");
   dottedline.style.position = "absolute";
-  dottedline.style.width = ((tileCol - 2) * tileWidth) + ((tileCol - 2) * tileGap) - 1 + "px";
-  dottedline.style.height = ((tileRow - 2) * tileWidth) + ((tileRow - 2) * tileGap) -1 + "px";
+  dottedline.style.width = ((tileCols - 2) * tileWidth) + ((tileCols - 2) * tileGap) - 1 + "px";
+  dottedline.style.height = ((tileRows - 2) * tileWidth) + ((tileRows - 2) * tileGap) -1 + "px";
   dottedline.style.left = tileLeft + tileBorder + tileWidth + Math.floor(tileGap / 2) + "px";
   dottedline.style.top = tileTop + tileBorder + tileWidth + Math.floor(tileGap / 2) + "px";
   dottedline.style.borderStyle = "dashed";
@@ -212,8 +214,8 @@ function createDiceDottedLine() {
 
   const dottedline = document.createElement("div");
   dottedline.style.position = "absolute";
-  dottedline.style.width = (diceTileBorder + (diceCol * diceTileWidth) + ((diceCol - 1) * diceTileGap)) + "px";
-  dottedline.style.height = (diceTileBorder + (diceRow * diceTileWidth) + ((diceRow - 1) * diceTileGap)) + "px";
+  dottedline.style.width = (diceTileBorder + (diceCols * diceTileWidth) + ((diceCols - 1) * diceTileGap)) + "px";
+  dottedline.style.height = (diceTileBorder + (diceRows * diceTileWidth) + ((diceRows- 1) * diceTileGap)) + "px";
   dottedline.style.left = diceTileLeft + Math.floor(diceTileBorder / 2) + "px";
   dottedline.style.top = diceTileTop + Math.floor(diceTileBorder / 2) + "px";
   dottedline.style.borderStyle = "dashed";
@@ -256,6 +258,39 @@ function tileClicked(tileId) {
       clickedTile.style.top = blankTileTop + 'px';
       clickedTile.style.left = blankTileLeft + 'px';
   }
+storeDiceColours();
+}
+
+/* Function to store the DICE colours in an array so they can be checked
+   against the colours on the grid
+*/
+
+function storeDiceColours() {
+
+  let startTop = diceTileTop + diceTileBorder;
+  let startLeft = diceTileLeft + diceTileBorder;
+  const allDice = document.getElementsByClassName('dice');
+
+  for (let i = 0; i < allDice.length; i++) {
+    const topDiff = parseInt(allDice[i].style.top) - startTop;
+    const leftDiff = parseInt(allDice[i].style.left) - startLeft;
+    const rowPos = topDiff / (diceTileWidth + diceTileGap);
+    const colPos = leftDiff / (diceTileWidth + diceTileGap);
+    diceColourArray[rowPos * diceCols + colPos] = allDice[i].style.backgroundColor;
+  }
+  console.log (diceColourArray);
+}
+
+/* Function to store the nine inner tiles on the colour grid in an array
+   so they can be checked against the DICE array colours
+*/
+function storeGridColours() {
+
+}
+
+// Function to check if tiles match
+
+function checkTileMatch() {
 
 }
 
