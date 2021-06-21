@@ -22,6 +22,7 @@ const diceTileBorder = 10;
 var blankTileId = 0;
 var diceColourArray = new Array(diceRows * diceCols);
 var gridColourArray = new Array(diceRows * diceCols);
+var gameWon = false;
 
 
 // There are six different colour tiles in the colour grid. Each colour appears 4 times
@@ -262,6 +263,9 @@ function tileClicked(tileId) {
 storeDiceColours();
 
 storeGridColours();
+
+checkColourMatch();
+
 }
 
 /* Function to store the DICE colours in an array so they can be checked
@@ -310,7 +314,22 @@ function storeGridColours() {
 
 // Function to check if tiles match
 
-function checkTileMatch() {
+function checkColourMatch() {
 
+  let tilesMatch = 0;
+
+  for (i=0; i < gridColourArray.length; ++i) {
+    if (gridColourArray[i] == diceColourArray[i]) {
+        ++tilesMatch;
+    }
+  }
+  console.log(tilesMatch); 
+  if (tilesMatch == (diceCols * diceRows)) {
+      gameWon = true;
+  } else {
+      gameWon = false;
+  }
+  
+  console.log(gameWon);
 }
 
