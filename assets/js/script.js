@@ -23,7 +23,10 @@ var blankTileId = 0;
 var diceColourArray = new Array(diceRows * diceCols);
 var gridColourArray = new Array(diceRows * diceCols);
 var tilesClickedCount = 0;
-var gameWon = false;
+var gameStartTime = 0;
+var timeAllowed = 300;
+var gameInPlay = false;
+var gameWin = false;
 
 
 // There are six different colour tiles in the colour grid. Each colour appears 4 times
@@ -238,12 +241,22 @@ function mixDiceColours() {
     mixTile[i].style.backgroundColor = tileColors[randomColor];
     
   }
+
+  debugger;
+  gameStartTime = new Date();
+  gameInPlay = true;
+  setInterval(timerCount, 100);
 } 
+
   
 //  Function for when a tile is clicked to be moved
 
 function tileClicked(tileId) {
   
+  if (!gameInPlay) {
+    return;
+  }
+
   let clickedTile = document.getElementById(tileId);
   let blankTile = document.getElementById(blankTileId);
   
@@ -263,20 +276,22 @@ function tileClicked(tileId) {
       ++tilesClickedCount;
   }
 
-document.getElementById("tiles-moved").innerText = tilesClickedCount;
+  document.getElementById("tiles-moved").innerText = tilesClickedCount;
 
-storeDiceColours();
+  storeDiceColours();
 
-storeGridColours();
+  storeGridColours();
 
-checkColourMatch();
-
+  if (checkColourMatch()) {
+    document.getElementById("game-win").innerHTML = "CONGRATULATIONS!! Press START to play again.";
+    gameInPlay = false;
+  }
 }
+
 
 /* Function to store the DICE colours in an array so they can be checked
    against the colours on the grid
 */
-
 function storeDiceColours() {
 
   let startTop = diceTileTop + diceTileBorder;
@@ -320,7 +335,7 @@ function storeGridColours() {
 // Function to check if tiles match
 
 function checkColourMatch() {
-
+  
   let tilesMatch = 0;
 
   for (i=0; i < gridColourArray.length; ++i) {
@@ -328,14 +343,33 @@ function checkColourMatch() {
         ++tilesMatch;
     }
   }
-  console.log(tilesMatch); 
-  if (tilesMatch == (diceCols * diceRows)) {
-      gameWon = true;
-  } else {
-      gameWon = false;
-  }
-
+  
   document.getElementById("tiles-matched").innerText = tilesMatch;
-  console.log(gameWon);
+
+  if (tilesMatch == (diceCols * diceRows)) {
+    return true;  // completed gpuzzle
+  } else {
+    return false; // not completed yet
+  }
+  
 }
 
+// Timer Function
+
+function timerCount() {
+  
+  if (gameInPlay) {
+    const timeInPlay = Math.floor((new Date() - gameStartTime) / 1000);
+    const timeRemaining = timeAllowed - timeInPlay;
+    const minRemaining = Math.floor(timeRemaining / 60);
+    const secRemaining = timeRemaining % 60;
+    document.getElementById("timer").innerHTML = "Time Remaining: " + minRemaining + ":" + (secRemaining < 10 ? ("0" + secRemaining) : secRemaining);
+    if (timeRemaining <= 0) {
+      gameInPlay = false;
+    }
+    //document.getElementById("numMovesZone").innerHTML = "Number of moves: " + gameMovesMade;
+    //document.getElementById("tilesInPosition").innerHTML = "Tiles in position: " + tilesInPosition;
+  }
+}
+
+//setInterval(timerCount, 100);

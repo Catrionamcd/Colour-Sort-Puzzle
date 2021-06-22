@@ -49,9 +49,12 @@ body {
 
 }
 
-#trophy {
-    color : gold;
-    font-size : 200%;
+#game-win {
+    color : red;
+    top: 500px;
+    left: 400px;
+    font-size : 150%;
+    position : absolute;
 }
 
 #timer {
