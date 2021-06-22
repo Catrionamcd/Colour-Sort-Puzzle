@@ -7,21 +7,22 @@ const tileCols = 5;
 const tileRows = 5;
 const tileWidth = 50;
 const tileGap = 8;
-const tileTop = 200;
-const tileLeft = 200;
+const tileTop = 150;
+const tileLeft = 300;
 const tileBorder = 10;
 
 const diceCols = 3;
 const diceRows = 3;
 const diceTileWidth = 50;
 const diceTileGap = 8;
-const diceTileTop = 258;
-const diceTileLeft = 600;
+const diceTileTop = 150;
+const diceTileLeft = 750;
 const diceTileBorder = 10;
 
 var blankTileId = 0;
 var diceColourArray = new Array(diceRows * diceCols);
 var gridColourArray = new Array(diceRows * diceCols);
+var tilesClickedCount = 0;
 var gameWon = false;
 
 
@@ -259,7 +260,11 @@ function tileClicked(tileId) {
       blankTile.style.left = clickedTileLeft + 'px';
       clickedTile.style.top = blankTileTop + 'px';
       clickedTile.style.left = blankTileLeft + 'px';
+      ++tilesClickedCount;
   }
+
+document.getElementById("tiles-moved").innerText = tilesClickedCount;
+
 storeDiceColours();
 
 storeGridColours();
@@ -329,7 +334,8 @@ function checkColourMatch() {
   } else {
       gameWon = false;
   }
-  
+
+  document.getElementById("tiles-matched").innerText = tilesMatch;
   console.log(gameWon);
 }
 

@@ -1,6 +1,7 @@
 
 body {
     font-family: "Raleway", sans-serif;
+    background-color: rgb(223, 219, 213);
 }
 
 #game-name {
@@ -8,7 +9,6 @@ body {
     color: red;
     font-size: 2.5rem;
 }
-
 
 .tile {
     border-radius: 4px;
@@ -21,13 +21,13 @@ body {
 }
 
 #button-container {
-    height: 50px;
-    width: 100px;
+    height: 40px;
+    width: 80px;
     border-radius: 10px;
     position: absolute;
     background-color: red;
-    top : 120px;
-    left : 200px;
+    top : 80px;
+    left : 300px;
 }
  
 
@@ -37,9 +37,16 @@ body {
     text-transform :uppercase;
     border: 1px transparent;
     background-color: red;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bolder;
-    color: white;
+    color: black;
+}
+
+.progress-area {
+    position : absolute;
+    top: 350px;
+    left : 750px;
+
 }
 
 #trophy {
