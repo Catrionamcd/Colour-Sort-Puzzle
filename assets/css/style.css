@@ -55,7 +55,7 @@ body {
     text-align: center;
 }
 
-#game-win {
+#game-result {
     color : red;
     top: 500px;
     left: 400px;

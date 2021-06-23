@@ -16,21 +16,6 @@
         Colour Sort Puzzle
     </header>
 
-    <div id="game-area">
-          <div id="grid-area"></div>
-
-         <!-- <p>Match the 9 inner tiles on the grid with the 9 tiles on small grid. Click,
-                 on a tile to move it. Press START to begin !
-              </p> 
-         -->
-          </div> 
-        
-    <div id="button-container">
-
-        <button class="btn-start" onclick="startGame()">Start</button>
-
-    </div>
-
     <div class="progress-area">
 
         <span><i class="fas fa-stopwatch"></i></span><span id="timer">  00:00</span>
@@ -40,12 +25,26 @@
         <span>Tiles Moved : </span><span id="tiles-moved">0</span>
 
     </div>
-    <div id="game-win"><span> </span></div>
-        
-    <!-- <div id="trophy"><i class="fas fa-trophy"></i><span>Congratulations!</span></div> -->
+
+    <div id="button-container">
+
+        <button class="btn-start" onclick="startGame()">Start</button>
+
     </div>
-    
-                
+
+
+    <div id="game-area">
+          <div id="grid-area"></div>
+
+         <!-- <p>Match the 9 inner tiles on the grid with the 9 tiles on small grid. Click,
+                 on a tile to move it. Press START to begin !
+              </p> 
+         -->
+    </div> 
+        
+    <div id="game-result"><span> </span></div>
+        
+                   
     </div>
     <script src = "assets/js/script.js"></script>
 </body>

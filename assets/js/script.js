@@ -5,19 +5,19 @@
    
 const tileCols = 5;
 const tileRows = 5;
-const tileWidth = 50;
-const tileGap = 8;
-const tileTop = 150;
-const tileLeft = 300;
-const tileBorder = 10;
+var tileWidth = 50;
+var tileGap = 8;
+var tileTop = 150;
+var tileLeft = 300;
+var tileBorder = 10;
 
 const diceCols = 3;
 const diceRows = 3;
-const diceTileWidth = 50;
-const diceTileGap = 8;
-const diceTileTop = 150;
-const diceTileLeft = 750;
-const diceTileBorder = 10;
+var diceTileWidth = 50;
+var diceTileGap = 8;
+var diceTileTop = 150;
+var diceTileLeft = 750;
+var diceTileBorder = 10;
 
 var blankTileId = 0;
 var diceColourArray = new Array(diceRows * diceCols);
@@ -25,7 +25,7 @@ var gridColourArray = new Array(diceRows * diceCols);
 var tilesClickedCount = 0;
 var tilesMatch = 0;
 var gameStartTime = 0;
-var timeAllowed = 30;
+var timeAllowed = 120;
 var gameInPlay = false;
 var gameWin = false;
 
@@ -34,7 +34,39 @@ var gameWin = false;
 
 const tileColors = ['red', 'green', 'yellow', 'blue', 'white', 'orange'];
 const maxTileColor = 4;
- 
+
+function adjustMedia320(media320) {
+  if (media320.matches) {
+    tileTop = 300;
+    tileLeft = 20;
+    tileWidth = 30;
+
+    diceTileLeft = 50;
+    diceTileWidth = 30;
+  }
+}
+
+var media320 = window.matchMedia("(max-width: 450px)");
+adjustMedia320(media320);
+
+
+
+function adjustMedia850(media850) {
+  if (media850.matches) {
+    tileTop = 300;
+    tileLeft = 20;
+    tileWidth = 30;
+
+    diceTileTop = 80;
+    diceTileLeft = 50;
+    diceTileWidth = 30;
+  }
+}
+
+var media850 = window.matchMedia("(max-width: 850px)");
+adjustMedia850(media850);
+
+
 // Get the grid area from the html div by it's grid area id
 
 const gridAreaDiv = document.getElementById('grid-area');
@@ -246,6 +278,7 @@ function startGame() {
   gameInPlay = true;
   tilesClickedCount = 0;
   tilesMatch = 0;
+  document.getElementById("game-result").innerHTML = " ";
   document.getElementById("tiles-moved").innerText = tilesClickedCount;
   checkColourMatch();   // Might have some random matches;
   
@@ -325,7 +358,7 @@ function tileClicked(tileId) {
   storeGridColours();
 
   if (checkColourMatch()) {
-    document.getElementById("game-win").innerHTML = "CONGRATULATIONS!! Press START button to play again.";
+    document.getElementById("game-result").innerHTML = "CONGRATULATIONS!! Press START button to play again.";
     gameInPlay = false;
   }
     
@@ -409,7 +442,7 @@ function timerCount() {
     
     if (timeRemaining <= 0) {
       gameInPlay = false;
-      document.getElementById("game-win").innerHTML = "SORRY, times up!! Press START button to play again.";
+      document.getElementById("game-result").innerHTML = "SORRY, times up!! Press START button to play again.";
     }
   }
   
