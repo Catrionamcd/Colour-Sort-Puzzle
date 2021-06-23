@@ -403,6 +403,7 @@ function timerCount() {
     
     if (timeRemaining <= 0) {
       gameInPlay = false;
+      document.getElementById("game-win").innerHTML = "SORRY, times up!! Press START button to play again.";
     }
   }
   
