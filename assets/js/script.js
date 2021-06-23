@@ -242,7 +242,6 @@ function mixDiceColours() {
     
   }
 
-  debugger;
   gameStartTime = new Date();
   gameInPlay = true;
   setInterval(timerCount, 100);
@@ -283,7 +282,7 @@ function tileClicked(tileId) {
   storeGridColours();
 
   if (checkColourMatch()) {
-    document.getElementById("game-win").innerHTML = "CONGRATULATIONS!! Press START to play again.";
+    document.getElementById("game-win").innerHTML = "CONGRATULATIONS!! Press START button to play again.";
     gameInPlay = false;
   }
 }
@@ -347,7 +346,7 @@ function checkColourMatch() {
   document.getElementById("tiles-matched").innerText = tilesMatch;
 
   if (tilesMatch == (diceCols * diceRows)) {
-    return true;  // completed gpuzzle
+    return true;  // completed puzzle
   } else {
     return false; // not completed yet
   }
@@ -363,7 +362,8 @@ function timerCount() {
     const timeRemaining = timeAllowed - timeInPlay;
     const minRemaining = Math.floor(timeRemaining / 60);
     const secRemaining = timeRemaining % 60;
-    document.getElementById("timer").innerHTML = "Time Remaining: " + minRemaining + ":" + (secRemaining < 10 ? ("0" + secRemaining) : secRemaining);
+    document.getElementById("timer").innerHTML = minRemaining + ":" + (secRemaining < 10 ? ("0" + secRemaining) : secRemaining);
+    //document.getElementById("timer").innerHTML = "Time Remaining: " + minRemaining + ":" + (secRemaining < 10 ? ("0" + secRemaining) : secRemaining);
     if (timeRemaining <= 0) {
       gameInPlay = false;
     }
@@ -372,4 +372,3 @@ function timerCount() {
   }
 }
 
-//setInterval(timerCount, 100);

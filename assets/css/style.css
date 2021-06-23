@@ -22,12 +22,12 @@ body {
 
 #button-container {
     height: 40px;
-    width: 80px;
+    width: 70px;
     border-radius: 10px;
     position: absolute;
-    background-color: red;
-    top : 80px;
-    left : 300px;
+    background-color: slategrey;
+    top : 150px;
+    left : 220px;
 }
  
 
@@ -36,17 +36,21 @@ body {
     margin-left: 2px;
     text-transform :uppercase;
     border: 1px transparent;
-    background-color: red;
+    background-color: slategrey;
     font-size: 1rem;
     font-weight: bolder;
-    color: black;
+    color : white;
 }
 
 .progress-area {
+    height: 50px;
+    width: 500px;
     position : absolute;
-    top: 350px;
-    left : 750px;
-
+    top: 80px;
+    left : 300px;
+    color : #87868c;
+    font-size : 150%;
+    border : solid darkgrey;
 }
 
 #game-win {
@@ -57,8 +61,4 @@ body {
     position : absolute;
 }
 
-#timer {
-    color: silver;
-    font-size : 200%;
-}
 
