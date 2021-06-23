@@ -33,7 +33,7 @@ var gameWin = false;
 // There are six different colour tiles in the colour grid. Each colour appears 4 times
 
 const tileColors = ['red', 'green', 'yellow', 'blue', 'white', 'orange'];
-const maxTileColor = 2;
+const maxTileColor = 4;
  
 // Get the grid area from the html div by it's grid area id
 
@@ -240,9 +240,14 @@ function startGame() {
   while(maxColourExceeded()) {
     mixDiceColours()
   }
+  storeDiceColours();
 
   gameStartTime = new Date();
   gameInPlay = true;
+  tilesClickedCount = 0;
+  tilesMatch = 0;
+  document.getElementById("tiles-moved").innerText = tilesClickedCount;
+  checkColourMatch();   // Might have some random matches;
   
   setInterval(timerCount, 100);
 }
@@ -310,8 +315,6 @@ function tileClicked(tileId) {
   }
 
   document.getElementById("tiles-moved").innerText = tilesClickedCount;
-
-  storeDiceColours();
 
   storeGridColours();
 
