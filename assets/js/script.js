@@ -23,8 +23,9 @@ var blankTileId = 0;
 var diceColourArray = new Array(diceRows * diceCols);
 var gridColourArray = new Array(diceRows * diceCols);
 var tilesClickedCount = 0;
+var tilesMatch = 0;
 var gameStartTime = 0;
-var timeAllowed = 300;
+var timeAllowed = 30;
 var gameInPlay = false;
 var gameWin = false;
 
@@ -32,7 +33,7 @@ var gameWin = false;
 // There are six different colour tiles in the colour grid. Each colour appears 4 times
 
 const tileColors = ['red', 'green', 'yellow', 'blue', 'white', 'orange'];
-const maxTileColor = 4;
+const maxTileColor = 2;
  
 // Get the grid area from the html div by it's grid area id
 
@@ -231,7 +232,22 @@ function createDiceDottedLine() {
 
 }
 
-//  Function to mix up the colours on the DICE grid.
+//  Function to start the game
+
+function startGame() {
+
+  mixDiceColours();
+  while(maxColourExceeded()) {
+    mixDiceColours()
+  }
+
+  gameStartTime = new Date();
+  gameInPlay = true;
+  
+  setInterval(timerCount, 100);
+}
+
+//  Function to mix up the colours on the DICE grid & to start the game.
 
 function mixDiceColours() {
   
@@ -239,19 +255,37 @@ function mixDiceColours() {
   for (let i = 0; i < mixTile.length; i++) {
     const randomColor = Math.floor(Math.random() * 6);
     mixTile[i].style.backgroundColor = tileColors[randomColor];
-    
   }
 
-  gameStartTime = new Date();
-  gameInPlay = true;
-  setInterval(timerCount, 100);
 } 
 
+//  Function to check if each Dice colour is not used more than maxTileColor times.
+
+function maxColourExceeded() {
+
+  let colourCount = new Array (tileColors.length);
+  for (let x = 0; x < tileColors.length; ++x) {
+    colourCount[x] = 0;
+  }
+
+  let mixTile = document.getElementsByClassName('dice');
+  for (let i = 0; i < mixTile.length; i++) {
+    let index = tileColors.indexOf(mixTile[i].style.backgroundColor);
+    ++colourCount[index];
+  }
+
+  for (let y = 0; y < tileColors.length; y++) {
+    if (colourCount[y] > maxTileColor) {
+      return true;  
+    }
+  }
+  return false;
+}
   
 //  Function for when a tile is clicked to be moved
 
 function tileClicked(tileId) {
-  
+
   if (!gameInPlay) {
     return;
   }
@@ -285,6 +319,7 @@ function tileClicked(tileId) {
     document.getElementById("game-win").innerHTML = "CONGRATULATIONS!! Press START button to play again.";
     gameInPlay = false;
   }
+    
 }
 
 
@@ -304,7 +339,6 @@ function storeDiceColours() {
     const colPos = leftDiff / (diceTileWidth + diceTileGap);
     diceColourArray[rowPos * diceCols + colPos] = allDice[i].style.backgroundColor;
   }
-  console.log (diceColourArray);
 }
 
 /* Function to store the nine inner tiles on the colour grid in an array
@@ -335,7 +369,7 @@ function storeGridColours() {
 
 function checkColourMatch() {
   
-  let tilesMatch = 0;
+  tilesMatch = 0;
 
   for (i=0; i < gridColourArray.length; ++i) {
     if (gridColourArray[i] == diceColourArray[i]) {
@@ -362,13 +396,12 @@ function timerCount() {
     const timeRemaining = timeAllowed - timeInPlay;
     const minRemaining = Math.floor(timeRemaining / 60);
     const secRemaining = timeRemaining % 60;
-    document.getElementById("timer").innerHTML = minRemaining + ":" + (secRemaining < 10 ? ("0" + secRemaining) : secRemaining);
-    //document.getElementById("timer").innerHTML = "Time Remaining: " + minRemaining + ":" + (secRemaining < 10 ? ("0" + secRemaining) : secRemaining);
+    document.getElementById("timer").innerHTML = " " + minRemaining + ":" + (secRemaining < 10 ? ("0" + secRemaining) : secRemaining);
+    
     if (timeRemaining <= 0) {
       gameInPlay = false;
     }
-    //document.getElementById("numMovesZone").innerHTML = "Number of moves: " + gameMovesMade;
-    //document.getElementById("tilesInPosition").innerHTML = "Tiles in position: " + tilesInPosition;
   }
+  
 }
 
