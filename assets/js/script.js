@@ -312,6 +312,12 @@ function tileClicked(tileId) {
       clickedTile.style.top = blankTileTop + 'px';
       clickedTile.style.left = blankTileLeft + 'px';
       ++tilesClickedCount;
+  } else {
+    if (clickedTile.classList.contains("errorShaker")) {
+      clickedTile.classList.remove("errorShaker");
+      void clickedTile.offsetWidth;
+    }
+    clickedTile.classList.add("errorShaker");
   }
 
   document.getElementById("tiles-moved").innerText = tilesClickedCount;
