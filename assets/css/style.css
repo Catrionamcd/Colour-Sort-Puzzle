@@ -27,7 +27,7 @@ body {
     border-radius: 10px;
     position: absolute;
     background-color: slategrey;
-    top : 80px;
+    top : 84px;
     left : 300px;
 }
  
@@ -56,6 +56,20 @@ body {
     text-align: center;
 }
 
+#timer {
+    margin-top: 10px;
+    margin-right : 10px;
+}
+
+#tiles-matched {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+#tiles-moved {
+    margin-top: 10px;
+    margin-right: 10px;
+}
 #game-result {
     color : red;
     top: 500px;
