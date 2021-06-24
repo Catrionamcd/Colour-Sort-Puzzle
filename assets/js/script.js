@@ -270,7 +270,7 @@ function startGame() {
 
   mixDiceColours();
   while(maxColourExceeded()) {
-    mixDiceColours()
+    mixDiceColours();
   }
   storeDiceColours();
 
