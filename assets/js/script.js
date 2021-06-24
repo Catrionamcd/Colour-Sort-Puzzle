@@ -8,7 +8,7 @@ const tileRows = 5;
 var tileWidth = 50;
 var tileGap = 8;
 var tileTop = 150;
-var tileLeft = 300;
+var tileLeft = 600;
 var tileBorder = 10;
 
 const diceCols = 3;
@@ -16,7 +16,7 @@ const diceRows = 3;
 var diceTileWidth = 50;
 var diceTileGap = 8;
 var diceTileTop = 150;
-var diceTileLeft = 750;
+var diceTileLeft = 300;
 var diceTileBorder = 10;
 
 var blankTileId = 0;
@@ -25,7 +25,7 @@ var gridColourArray = new Array(diceRows * diceCols);
 var tilesClickedCount = 0;
 var tilesMatch = 0;
 var gameStartTime = 0;
-var timeAllowed = 120;
+var timeAllowed = 180;
 var gameInPlay = false;
 var gameWin = false;
 
@@ -278,8 +278,9 @@ function startGame() {
   gameInPlay = true;
   tilesClickedCount = 0;
   tilesMatch = 0;
-  document.getElementById("game-result").innerHTML = " ";
+  document.getElementById("game-result").innerText = " ";
   document.getElementById("tiles-moved").innerText = tilesClickedCount;
+  document.getElementById("btn-start").innerText = "Re-start";
   checkColourMatch();   // Might have some random matches;
   
   setInterval(timerCount, 100);
@@ -358,7 +359,8 @@ function tileClicked(tileId) {
   storeGridColours();
 
   if (checkColourMatch()) {
-    document.getElementById("game-result").innerHTML = "CONGRATULATIONS!! Press START button to play again.";
+    document.getElementById("game-result").innerText = "CONGRATULATIONS!! Press START button to play again";
+    document.getElementById("btn-start").innerText = "Start";
     gameInPlay = false;
   }
     
@@ -426,7 +428,6 @@ function checkColourMatch() {
   } else {
     return false; // not completed yet
   }
-  
 }
 
 // Timer Function
@@ -442,9 +443,9 @@ function timerCount() {
     
     if (timeRemaining <= 0) {
       gameInPlay = false;
-      document.getElementById("game-result").innerHTML = "SORRY, times up!! Press START button to play again.";
+      document.getElementById("game-result").innerText = "SORRY, times up!! Press START button to play again.";
+      document.getElementById("btn-start").innerText = "Start";
     }
   }
-  
 }
 

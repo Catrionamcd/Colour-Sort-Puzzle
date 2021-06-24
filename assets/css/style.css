@@ -21,9 +21,9 @@ body {
     position: absolute;
 }
 
-#button-container {
+#btn-container {
     height: 40px;
-    width: 70px;
+    width: 100px;
     border-radius: 10px;
     position: absolute;
     background-color: slategrey;
@@ -32,7 +32,7 @@ body {
 }
  
 
-.btn-start {
+#btn-start {
     margin-top: 10px;
     margin-left: 2px;
     text-transform :uppercase;
@@ -76,6 +76,7 @@ body {
     left: 400px;
     font-size : 150%;
     position : absolute;
+    text-align: center;
 }
 
 /* The following css was taken from W3Schools, the link is :
