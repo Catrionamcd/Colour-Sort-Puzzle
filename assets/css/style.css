@@ -56,20 +56,26 @@ body {
     text-align: center;
 }
 
-#timer {
-    margin-top: 10px;
-    margin-right : 10px;
+#timer-area {
+    top : 370px;
+    left : 300px;
+    height: 80px;
+    width: 180px;
+    font-size: 300%;
+    position: absolute;
+    color: slategrey;
 }
 
 #tiles-matched {
-    margin-top: 10px;
+    padding-top: 10px;
     margin-right: 10px;
 }
 
 #tiles-moved {
-    margin-top: 10px;
+    padding-top: 10px;
     margin-right: 10px;
 }
+
 #game-result {
     color : red;
     top: 500px;
