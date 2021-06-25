@@ -7,16 +7,16 @@ const tileCols = 5;
 const tileRows = 5;
 var tileWidth = 50;
 var tileGap = 8;
-var tileTop = 150;
-var tileLeft = 600;
+var tileTop = 0; //150;
+var tileLeft = 0; //600;
 var tileBorder = 10;
 
 const diceCols = 3;
 const diceRows = 3;
 var diceTileWidth = 50;
 var diceTileGap = 8;
-var diceTileTop = 150;
-var diceTileLeft = 300;
+var diceTileTop = 0; //150;
+var diceTileLeft = 0; //300;
 var diceTileBorder = 10;
 
 var blankTileId = 0;
@@ -25,7 +25,7 @@ var gridColourArray = new Array(diceRows * diceCols);
 var tilesClickedCount = 0;
 var tilesMatch = 0;
 var gameStartTime = 0;
-var timeAllowed = 180;
+var timeAllowed = 30;
 var gameInPlay = false;
 var gameWin = false;
 
@@ -35,22 +35,26 @@ var gameWin = false;
 const tileColors = ['red', 'green', 'yellow', 'blue', 'white', 'orange'];
 const maxTileColor = 4;
 
+setInterval(timerCount, 100);
+/*
 function adjustMedia320(media320) {
   if (media320.matches) {
+    console.log("matches");
     tileTop = 300;
     tileLeft = 20;
-    tileWidth = 30;
+    tileWidth = 5;
 
     diceTileLeft = 50;
     diceTileWidth = 30;
   }
 }
+*/
+//var media320 = window.matchMedia("(max-width: 450px)");
+//adjustMedia320(media320);
+//media320.addEventListener(adjustMedia320);
 
-var media320 = window.matchMedia("(max-width: 450px)");
-adjustMedia320(media320);
 
-
-
+/*
 function adjustMedia850(media850) {
   if (media850.matches) {
     tileTop = 300;
@@ -62,14 +66,30 @@ function adjustMedia850(media850) {
     diceTileWidth = 30;
   }
 }
-
-var media850 = window.matchMedia("(max-width: 850px)");
-adjustMedia850(media850);
+*/
+//var media850 = window.matchMedia("(max-width: 850px)");
+//adjustMedia850(media850);
+//media850.addEventListener(adjustMedia850);
 
 
 // Get the grid area from the html div by it's grid area id
 
 const gridAreaDiv = document.getElementById('grid-area');
+const tileAreaDiv = document.getElementById('tile-game-area');
+let tileId = 0;
+
+
+
+/*  Call the Create tile dice function. This function displays 9 colors tiles in 3 
+    rows & 3 columns. The nine inner tiles on the coloue grid will have to match these
+    9 tiles
+*/
+
+createDiceBackground();
+
+createDiceDottedLine();
+
+createDiceGrid();
 
 /* Call the Create Black Background function to render a black background on the screen
    behind the colour grid
@@ -89,24 +109,13 @@ createDottedLine();
 
 createTileGrid();
 
-/*  Call the Create tile dice function. This function displays 9 colors tiles in 3 
-    rows & 3 columns. The nine inner tiles on the coloue grid will have to match these
-    9 tiles
-*/
-
-createDiceBackground();
-
-createDiceDottedLine();
-
-createDiceGrid();
-
 // Function to create the colour tile grid
 
 function createTileGrid() {
 
   let colorCount = 0;
   let currColor = 0;
-  let tileId = 0;
+  //let tileId = 0;
     
   let currTileTop = tileTop + tileBorder;
         
@@ -132,7 +141,7 @@ function createTileGrid() {
         newTile.onclick = function() {tileClicked(this.id)};
       }
 
-      gridAreaDiv.appendChild(newTile);
+      tileAreaDiv.appendChild(newTile);
 
       currTileLeft += (tileWidth + tileGap);
       ++colorCount;
@@ -154,7 +163,7 @@ function createDiceGrid() {
 
   let colorCount = 0;
   let currColor = 0;
-  let tileId = 0;
+  //let tileId = 0;
     
   let currTileTop = diceTileTop + diceTileBorder;
         
@@ -205,7 +214,7 @@ function createBlackBackground() {
   back.style.left = tileLeft + "px";
   back.style.top = tileTop + "px";
   back.style.background = "black";
-  gridAreaDiv.appendChild(back);
+  tileAreaDiv.appendChild(back);
 
 }
 
@@ -243,7 +252,7 @@ function createDottedLine() {
   dottedline.style.borderStyle = "dashed";
   dottedline.style.borderWidth = "thin";
   dottedline.style.borderColor = "white";
-  gridAreaDiv.appendChild(dottedline);
+  tileAreaDiv.appendChild(dottedline);
 
 }
 
@@ -283,7 +292,6 @@ function startGame() {
   document.getElementById("btn-start").innerText = "Re-start";
   checkColourMatch();   // Might have some random matches;
   
-  setInterval(timerCount, 100);
 }
 
 //  Function to mix up the colours on the DICE grid & to start the game.
@@ -405,7 +413,6 @@ function storeGridColours() {
     }
     gridColourArray[rowPos * diceCols + colPos] = allGrid[i].style.backgroundColor;
   }
-  console.log (gridColourArray);
 }
 
 
@@ -434,18 +441,24 @@ function checkColourMatch() {
 
 function timerCount() {
   
-  if (gameInPlay) {
-    const timeInPlay = Math.floor((new Date() - gameStartTime) / 1000);
-    const timeRemaining = timeAllowed - timeInPlay;
-    const minRemaining = Math.floor(timeRemaining / 60);
-    const secRemaining = timeRemaining % 60;
-    document.getElementById("timer").innerHTML = " " + minRemaining + ":" + (secRemaining < 10 ? ("0" + secRemaining) : secRemaining);
-    
-    if (timeRemaining <= 0) {
-      gameInPlay = false;
-      document.getElementById("game-result").innerText = "SORRY, times up!! Press START button to play again.";
-      document.getElementById("btn-start").innerText = "Start";
-    }
+  //var media320 = window.matchMedia("(max-width: 450px)");
+  //adjustMedia320(media320);
+  
+  if (!gameInPlay) {    // If game not in play
+    return;             // Exit out
   }
+  
+  const timeInPlay = Math.floor((new Date() - gameStartTime) / 1000);
+  const timeRemaining = timeAllowed - timeInPlay;
+  const minRemaining = Math.floor(timeRemaining / 60);
+  const secRemaining = timeRemaining % 60;
+  document.getElementById("timer").innerHTML = " " + minRemaining + ":" + (secRemaining < 10 ? ("0" + secRemaining) : secRemaining);
+  
+  if (timeRemaining <= 0) {
+    gameInPlay = false;
+    document.getElementById("game-result").innerText = "SORRY, times up!! Press START button to play again.";
+    document.getElementById("btn-start").innerText = "Start";
+  }
+
 }
 

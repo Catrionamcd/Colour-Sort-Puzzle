@@ -12,39 +12,47 @@
 </head>
 
 <body>
-    <header id="game-name">
-        Colour Sort Puzzle
-    </header>
+    <section class="game-container">
 
-    <div id="btn-container">
-
-        <button id="btn-start" onclick="startGame()">Start</button>
-
-    </div>
-
-    <div class="progress-area">
-
-        <span>Tiles Matched : </span><span id="tiles-matched">0</span>
-        <span>Tiles Moved : </span><span id="tiles-moved">0</span>
-
-    </div>
-
-    <div id="game-area">
-          <div id="grid-area"></div>
-
-         <!-- <p>Match the 9 inner tiles on the grid with the 9 tiles on small grid. Click,
-                 on a tile to move it. Press START to begin !
-              </p> 
-         -->
-    </div> 
-
-    <div id="timer-area">
-
-        <span><i class="fas fa-stopwatch"></i></span><span id="timer">  0:00</span>
+        <header id="game-name">
+            Colour Sort Puzzle
+        </header>
         
-    </div>
+        <div id="empty-row"></div>
+
+        <div >
+            <button id="btn-instruction" onclick="startGame()">Instructions</button>
+        </div>
+
+        <div id="empty-row"></div>
+
+        <div id="btn-container">
+
+            <button id="btn-start" onclick="startGame()">Start</button>
+
+        </div>
+
+        <div class="progress-area">
+
+            <span>Tiles Matched : </span><span id="tiles-matched">0</span>
+            <span>Tiles Moved : </span><span id="tiles-moved">0</span>
+
+        </div>
         
-    <div id="game-result"></div>
+        <div id="empty-row"></div>
+
+        <div id="grid-area"></div>
+ 
+        <div id="timer-area">
+            <span><i class="fas fa-stopwatch"></i></span><span id="timer">  0:00</span>      
+        </div>
+        
+        <div id="tile-game-area"></div>
+
+        <div id="empty-row"></div>
+            
+        <div id="game-result"></div>
+    </section>
         
     <script src = "assets/js/script.js"></script>
 

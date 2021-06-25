@@ -5,6 +5,13 @@ body {
     background-color: rgb(223, 219, 213);
 }
 
+.game-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+}
+
 #game-name {
     text-align: center;
     color: red;
@@ -20,15 +27,41 @@ body {
     border-radius: 4px;
     position: absolute;
 }
+/*
+#btn-instr-ctn {
+    height: 20px;
+    width: 100px;
+    margin-bottom: 90px;
+    border-radius: 5px;
+    position: relative; /*absolute;*/
+   /* background-color: slategrey;
+    top : 84px;
+    left : 300px;*/
+  /*  text-align: center;
+}*/
+
+#btn-instruction {
+    margin-top: 10px;
+    margin-left: 2px;
+    margin-bottom: 30px;
+    text-transform :uppercase;
+    /*border: 1px transparent;*/
+    background-color: slategrey;
+    font-size: 0.65rem;
+    font-weight: bolder;
+    color : white;
+}
 
 #btn-container {
     height: 40px;
     width: 100px;
+    margin-right: 60px;
     border-radius: 10px;
-    position: absolute;
+    position: relative; /*absolute;*/
     background-color: slategrey;
-    top : 84px;
-    left : 300px;
+    /*top : 84px;
+    left : 300px;*/
+    text-align: center;
 }
  
 
@@ -44,30 +77,34 @@ body {
 }
 
 .progress-area {
-    height: 50px;
-    width: 500px;
-    position : absolute;
-    top: 80px;
-    left : 400px;
-    color : white;
+    /*height: 50px;
+    width: 500px;*/
+    position : relative; /*absolute*/
+    /*top: 80px;
+    left : 400px;*/
+    color : black;
     font-size : 150%;
-    border-radius : 10px;
-    background-color: slategrey;
+    font-weight: bolder;
+    /*border-radius : 10px;*/
     text-align: center;
 }
 
 #timer-area {
-    top : 370px;
-    left : 300px;
-    height: 80px;
-    width: 180px;
+    /*top : 370px;
+    left : 300px;*/
+    /*height: 80px;
+    /*width: 180px;*/
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
     font-size: 300%;
-    position: absolute;
+    position: relative; /*absolute;*/
     color: slategrey;
+    /*background-color: brown;*/
 }
 
 #tiles-matched {
-    padding-top: 10px;
+    /*padding-top: 10px;*/
     margin-right: 10px;
 }
 
@@ -76,14 +113,44 @@ body {
     margin-right: 10px;
 }
 
+#empty-row {
+    flex-basis: 100%;
+    height: 0px;
+}
+
+#empty-row-height {
+    flex-basis: 100%;
+    height: 30px;
+}
+
+#grid-area {
+    position: relative;
+    width: 186px;
+    height: 186px;
+    /*width: 80%;*/
+    background-color:cornflowerblue;
+    margin-top: 10px;
+}
+
+#tile-game-area {
+    position: relative;
+    /*width: 80%;*/
+    width: 302px;
+    height: 302px;
+    background-color: brown;
+    margin-top: 10px;
+}
+
 #game-result {
     color : red;
-    top: 500px;
-    left: 400px;
+    /*top: 500px;
+    left: 400px;*/
+    margin-top: 30px;
     font-size : 150%;
-    position : absolute;
+    position : relative; /*absolute;*/
     text-align: center;
 }
+
 
 /* The following css was taken from W3Schools, the link is :
    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_image_shake
@@ -113,3 +180,35 @@ body {
     100% { transform: translate(1px, -2px) rotate(-1deg); }
   }
   
+  @media screen and (max-width: 320px){
+    
+    #tile-game-area {
+        width: 100%;
+    }
+
+    #game-name {
+        font-size: 1.5rem;
+    }
+
+    #btn-instruction {
+        margin-bottom: 10px;
+    }
+
+    #btn-container {
+        height: 30px;
+        /*width: 100px;*/
+        border-radius: 10px;
+        margin-right: 0px;
+    }
+
+    #btn-start {
+        margin-top: 5px;
+        margin-left: 2px;
+        border: 1px transparent;
+        font-size: 1rem;
+    }
+
+    .progress-area {
+        font-size : 100%;
+    }
+}
