@@ -65,7 +65,7 @@ var gridColourArray = new Array(diceRows * diceCols);
 var tilesClickedCount = 0;
 var tilesMatch = 0;
 var gameStartTime = 0;
-var timeAllowed = 300;
+var timeAllowed = 40;
 var gameInPlay = false;
 var gameWin = false;
 let mediaInUse = "large";
@@ -76,40 +76,29 @@ const tileColors = ['red', 'green', 'yellow', 'blue', 'white', 'orange'];
 const maxTileColor = 4;
 
 setInterval(timerCount, 100);
-/*
-function adjustMedia320(media320) {
-  if (media320.matches) {
-    console.log("matches");
-    tileTop = 300;
-    tileLeft = 20;
-    tileWidth = 5;
 
-    diceTileLeft = 50;
-    diceTileWidth = 30;
+const btnInstruction = document.getElementById('btn-instruction');
+// Rules of the Game
+// Get the modal Instruction Window
+var modal = document.getElementById("instructionWindow");
+
+// When the user clicks the button, open the modal
+btnInstruction.onclick = function() {modal.style.display = "block";};
+
+
+// When the user clicks on (x), close the modal Instruction Window
+var clickClose = document.getElementById("closeInstructions");
+clickClose.onclick = function() {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal Instruction Window, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
   }
-}
-*/
-//var media320 = window.matchMedia("(max-width: 450px)");
-//adjustMedia320(media320);
-//media320.addEventListener(adjustMedia320);
+};
 
-
-/*
-function adjustMedia850(media850) {
-  if (media850.matches) {
-    tileTop = 300;
-    tileLeft = 20;
-    tileWidth = 30;
-
-    diceTileTop = 80;
-    diceTileLeft = 50;
-    diceTileWidth = 30;
-  }
-}
-*/
-//var media850 = window.matchMedia("(max-width: 850px)");
-//adjustMedia850(media850);
-//media850.addEventListener(adjustMedia850);
 
 
 // Get the grid area from the html div by it's grid area id
@@ -341,6 +330,7 @@ function startGame() {
   document.getElementById("game-result").innerText = " ";
   document.getElementById("tiles-moved").innerText = tilesClickedCount;
   document.getElementById("btn-start").innerText = "Re-start";
+  document.getElementById("timer").style.color = "slategrey";
   checkColourMatch();   // Might have some random matches;
   
 }
@@ -504,6 +494,10 @@ function timerCount() {
   const secRemaining = timeRemaining % 60;
   document.getElementById("timer").innerHTML = " " + minRemaining + ":" + (secRemaining < 10 ? ("0" + secRemaining) : secRemaining);
   
+  if (timeRemaining <= 30) {
+    document.getElementById("timer").style.color = "red";
+  }
+
   if (timeRemaining <= 0) {
     gameInPlay = false;
     document.getElementById("game-result").innerText = "SORRY, times up!! Press START button to play again.";
@@ -514,10 +508,14 @@ function timerCount() {
 
 function checkMediaQuery() {
   const media320max = window.matchMedia("(max-width: 320px)");
+  const media350max = window.matchMedia("(max-width: 360px)");
   const media414max = window.matchMedia("(max-width: 414px)");
   const media415min = window.matchMedia("(min-width: 415px)");   
+ 
   if (media320max.matches) {
     mediaAdjust320max();
+  } else if (media350max.matches) {
+    mediaAdjust350max();
   } else if (media414max.matches) {
     mediaAdjust414max();
   } else if (media415min.matches) {
@@ -531,8 +529,19 @@ function mediaAdjust320max() {
   }
 
   mediaAdjustAllDice(6, 25, 5);  // 1st: New Dice Border,   2nd: New Dice Width,   3rd: New Dice Gap
-  mediaAdjustAllTile(8, 35, 6);    // 1st: New Tile Border,   2nd: New Tile Width,   3rd: New Tile Gap
+  mediaAdjustAllTile(8, 45, 7);    // 1st: New Tile Border,   2nd: New Tile Width,   3rd: New Tile Gap
   mediaInUse = "320max";
+  
+}
+
+function mediaAdjust350max() {
+  if (mediaInUse == "350max") {
+    return;
+  }
+
+  mediaAdjustAllDice(6, 25, 5);  // 1st: New Dice Border,   2nd: New Dice Width,   3rd: New Dice Gap
+  mediaAdjustAllTile(8, 50, 8);    // 1st: New Tile Border,   2nd: New Tile Width,   3rd: New Tile Gap
+  mediaInUse = "350max";
   
 }
 
@@ -542,7 +551,7 @@ function mediaAdjust414max() {
   }
 
   mediaAdjustAllDice(6, 25, 5);  // 1st: New Dice Border,   2nd: New Dice Width,   3rd: New Dice Gap
-  mediaAdjustAllTile(8, 60, 6);    // 1st: New Tile Border,   2nd: New Tile Width,   3rd: New Tile Gap
+  mediaAdjustAllTile(8, 60, 8);    // 1st: New Tile Border,   2nd: New Tile Width,   3rd: New Tile Gap
   mediaInUse = "414max";
   
 }

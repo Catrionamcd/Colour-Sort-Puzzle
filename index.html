@@ -21,7 +21,23 @@
         <div id="empty-row"></div>
 
         <div >
-            <button id="btn-instruction" onclick="startGame()">Rules</button>
+            <button id="btn-instruction">Rules</button>
+            <!-- The Modal -->
+            <div id="instructionWindow" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                <span id="closeInstructions" class="close">&times;</span>
+                <h2>Instructions</h2>
+                <p>Press the START button to begin the game.</p>
+                <p>The colours on the smaller grid/dice will be mixed.</p>
+                <p>A countdown clock will be started.</p>
+                <p>Your challenge is to match the 9 inner tiles on the larger grid to the 9 colours on the dice.</p>
+                <p>Click or press a tile to move it.</p>
+                <p>Only a tile beside an empty space can be moved.</p>
+                </div>
+            
+            </div>
         </div>
 
 
@@ -33,10 +49,9 @@
         <div id="empty-row"></div>
         <div class="progress-area">
 
-            <span>Tiles Matched : </span><span id="tiles-matched">0</span>
-        </div>
-        <div class="progress-area">
-            <span>Tiles Moved : </span><span id="tiles-moved">0</span>
+            <span>Matched : </span><span id="tiles-matched">0</span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>Moved : </span><span id="tiles-moved">0</span>
 
         </div>
         
