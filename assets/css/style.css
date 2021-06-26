@@ -43,7 +43,7 @@ body {
 #btn-instruction {
     margin-top: 10px;
     margin-left: 2px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     text-transform :uppercase;
     /*border: 1px transparent;*/
     background-color: slategrey;
@@ -55,7 +55,7 @@ body {
 #btn-container {
     height: 40px;
     width: 100px;
-    margin-right: 60px;
+    margin-bottom: 15px;
     border-radius: 10px;
     position: relative; /*absolute;*/
     background-color: slategrey;
@@ -77,11 +77,8 @@ body {
 }
 
 .progress-area {
-    /*height: 50px;
-    width: 500px;*/
-    position : relative; /*absolute*/
-    /*top: 80px;
-    left : 400px;*/
+    position : relative;
+    margin-left: 60px;
     color : black;
     font-size : 150%;
     font-weight: bolder;
@@ -125,8 +122,6 @@ body {
 
 #grid-area {
     position: relative;
-    width: 186px;
-    height: 186px;
     /*width: 80%;*/
     background-color:cornflowerblue;
     margin-top: 10px;
@@ -135,8 +130,6 @@ body {
 #tile-game-area {
     position: relative;
     /*width: 80%;*/
-    width: 302px;
-    height: 302px;
     background-color: brown;
     margin-top: 10px;
 }
@@ -179,9 +172,11 @@ body {
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
   }
+
+
   
-  @media screen and (max-width: 320px){
-    
+@media screen and (max-width: 320px) {
+
     #tile-game-area {
         width: 100%;
     }
@@ -210,5 +205,24 @@ body {
 
     .progress-area {
         font-size : 100%;
+    }
+
+    #game-result {
+        margin-top: 10px;
+        font-size : 100%;
+    }
+}
+
+@media screen and (min-width: 1200px){
+    #grid-area {
+        margin-top: 40px;
+    }
+
+    #tile-game-area {
+        margin-top: 40px;
+    }
+
+    #timer-area {
+        margin-top: 80px;
     }
 }
