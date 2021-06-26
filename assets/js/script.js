@@ -11,6 +11,26 @@ var tileTop = 0; //150;
 var tileLeft = 0; //600;
 var tileBorder = 10;
 
+function tileContainerHeight() {
+  return (tileBorder * 2) + (tileRows * tileWidth) + ((tileRows - 1) * tileGap);
+}
+function tileContainerWidth() {
+  return (tileBorder * 2) + (tileCols * tileWidth) + ((tileCols - 1) * tileGap);
+}
+function tileDottedHeight() {
+  return ((tileRows - 2) * tileWidth) + ((tileRows - 2) * tileGap);
+}
+function tileDottedWidth() {
+  return ((tileCols - 2) * tileWidth) + ((tileCols - 2) * tileGap);
+}
+function tileDottedTop() {
+  return tileTop + tileBorder + tileWidth + Math.round(tileGap / 2);
+}
+function tileDottedLeft() {
+  return tileLeft + tileBorder + tileWidth + Math.round(tileGap / 2);
+}
+
+
 const diceCols = 3;
 const diceRows = 3;
 var diceTileWidth = 50;
@@ -18,6 +38,28 @@ var diceTileGap = 8;
 var diceTileTop = 0; //150;
 var diceTileLeft = 0; //300;
 var diceTileBorder = 10;
+
+function diceContainerHeight() {
+  return (diceTileBorder * 2) + (diceRows * diceTileWidth) + ((diceRows - 1) * diceTileGap);
+}
+function diceContainerWidth() {
+  return (diceTileBorder * 2) + (diceCols * diceTileWidth) + ((diceCols - 1) * diceTileGap);
+}
+function diceDottedHeight() {
+  return (diceTileBorder + (diceRows * diceTileWidth) + ((diceRows- 1) * diceTileGap));
+}
+function diceDottedWidth() {
+  return (diceTileBorder + (diceCols * diceTileWidth) + ((diceCols - 1) * diceTileGap));
+}
+function diceDottedTop() {
+  return diceTileTop + Math.round(diceTileBorder / 2);
+}
+function diceDottedLeft() {
+  return diceTileLeft + Math.round(diceTileBorder / 2);
+}
+
+
+
 
 var blankTileId = 0;
 var diceColourArray = new Array(diceRows * diceCols);
@@ -34,7 +76,19 @@ var gameWin = false;
 
 const tileColors = ['red', 'green', 'yellow', 'blue', 'white', 'orange'];
 const maxTileColor = 4;
-
+/*
+debugger;
+let testCount = 0;
+let testArray = new Array(3);
+for (let m=0; m<3; m++) {
+  testArray[m] = new Array(5);
+}
+for (let d=0; d<3; d++) {
+  for (let e=0; e<5; e++) {
+    testArray[d][e] = testCount++;
+  }
+}
+*/
 setInterval(timerCount, 100);
 /*
 function adjustMedia320(media320) {
@@ -208,14 +262,18 @@ function createDiceGrid() {
 function createBlackBackground() {
 
   const back = document.createElement("div");
+  back.setAttribute("id", "tile-back");
   back.style.position = "absolute";
-  back.style.width = (tileBorder * 2) + (tileCols * tileWidth) + ((tileCols - 1) * tileGap) + "px";
-  back.style.height = (tileBorder * 2) + (tileRows * tileWidth) + ((tileRows - 1) * tileGap) + "px";
+  back.style.height = tileContainerHeight() + 'px'; //(tileBorder * 2) + (tileRows * tileWidth) + ((tileRows - 1) * tileGap) + "px";
+  back.style.width = tileContainerWidth() + 'px'; //(tileBorder * 2) + (tileCols * tileWidth) + ((tileCols - 1) * tileGap) + "px";
   back.style.left = tileLeft + "px";
   back.style.top = tileTop + "px";
   back.style.background = "black";
   tileAreaDiv.appendChild(back);
 
+  const tileContainer = document.getElementById("tile-game-area");
+  tileContainer.style.height = tileTop + tileContainerHeight() + 'px';
+  tileContainer.style.width =  tileLeft + tileContainerWidth() + 'px';
 }
 
 /* Function to render the black background for the dice tile grid.
@@ -226,14 +284,19 @@ function createBlackBackground() {
 function createDiceBackground() {
 
   const back = document.createElement("div");
+  back.setAttribute("id", "dice-back");
   back.style.position = "absolute";
-  back.style.width = (diceTileBorder * 2) + (diceCols * diceTileWidth) + ((diceCols - 1) * diceTileGap) + "px";
-  back.style.height = (diceTileBorder * 2) + (diceRows * diceTileWidth) + ((diceRows - 1) * diceTileGap) + "px";
-  back.style.left = diceTileLeft + "px";
+  back.style.height = diceContainerHeight() + 'px';  //(diceTileBorder * 2) + (diceRows * diceTileWidth) + ((diceRows - 1) * diceTileGap) + "px";
+  back.style.width = diceContainerWidth() + 'px'; //(diceTileBorder * 2) + (diceCols * diceTileWidth) + ((diceCols - 1) * diceTileGap) + "px";
   back.style.top = diceTileTop + "px";
+  back.style.left = diceTileLeft + "px";
   back.style.background = "black";
   gridAreaDiv.appendChild(back);
 
+  const diceContainer = document.getElementById("grid-area");
+  diceContainer.style.height = diceTileTop + diceContainerHeight() + 'px';
+  diceContainer.style.width =  diceTileLeft + diceContainerWidth() + 'px';
+  
 }
 
 /* Function to render the dotted line around the inner nine tiles on the colour grid. 
@@ -244,11 +307,12 @@ function createDiceBackground() {
 function createDottedLine() {
 
   const dottedline = document.createElement("div");
+  dottedline.setAttribute("id", "tile-dotted");
   dottedline.style.position = "absolute";
-  dottedline.style.width = ((tileCols - 2) * tileWidth) + ((tileCols - 2) * tileGap) - 1 + "px";
-  dottedline.style.height = ((tileRows - 2) * tileWidth) + ((tileRows - 2) * tileGap) -1 + "px";
-  dottedline.style.left = tileLeft + tileBorder + tileWidth + Math.floor(tileGap / 2) + "px";
-  dottedline.style.top = tileTop + tileBorder + tileWidth + Math.floor(tileGap / 2) + "px";
+  dottedline.style.height = tileDottedHeight() + 'px'; //((tileRows - 2) * tileWidth) + ((tileRows - 2) * tileGap) + "px"; 
+  dottedline.style.width = tileDottedWidth() + 'px'; //((tileCols - 2) * tileWidth) + ((tileCols - 2) * tileGap) + "px";
+  dottedline.style.top = tileDottedTop() + 'px'; //tileTop + tileBorder + tileWidth + Math.round(tileGap / 2) + "px";
+  dottedline.style.left = tileDottedLeft() + 'px'; //tileLeft + tileBorder + tileWidth + Math.round(tileGap / 2) + "px";
   dottedline.style.borderStyle = "dashed";
   dottedline.style.borderWidth = "thin";
   dottedline.style.borderColor = "white";
@@ -261,11 +325,12 @@ function createDottedLine() {
 function createDiceDottedLine() { 
 
   const dottedline = document.createElement("div");
+  dottedline.setAttribute("id", "dice-dotted");
   dottedline.style.position = "absolute";
-  dottedline.style.width = (diceTileBorder + (diceCols * diceTileWidth) + ((diceCols - 1) * diceTileGap)) + "px";
-  dottedline.style.height = (diceTileBorder + (diceRows * diceTileWidth) + ((diceRows- 1) * diceTileGap)) + "px";
-  dottedline.style.left = diceTileLeft + Math.floor(diceTileBorder / 2) + "px";
-  dottedline.style.top = diceTileTop + Math.floor(diceTileBorder / 2) + "px";
+  dottedline.style.height = diceDottedHeight() + 'px'; //(diceTileBorder + (diceRows * diceTileWidth) + ((diceRows- 1) * diceTileGap)) + "px";
+  dottedline.style.width = diceDottedWidth() + 'px'; //(diceTileBorder + (diceCols * diceTileWidth) + ((diceCols - 1) * diceTileGap)) + "px";
+  dottedline.style.left = diceTileLeft + Math.round(diceTileBorder / 2) + "px";
+  dottedline.style.top = diceTileTop + Math.round(diceTileBorder / 2) + "px";
   dottedline.style.borderStyle = "dashed";
   dottedline.style.borderWidth = "thin";
   dottedline.style.borderColor = "white";
@@ -332,7 +397,7 @@ function maxColourExceeded() {
 //  Function for when a tile is clicked to be moved
 
 function tileClicked(tileId) {
-debugger;
+
   if (!gameInPlay) {
     return;
   }
@@ -469,42 +534,91 @@ function checkMediaQuery() {
 function mediaAdjust320(media320) {
   if (media320.matches) {
     
-    tileWidth = 35;
-    mediaAdjustAllTile();
+    mediaAdjustAllTile(10, 35, 8);    // 1st: New Tile Border,   2nd: New Tile Width,   3rd: New Tile Gap
 
-    diceTileWidth = 25;
-    mediaAdjustAllDice();
+    mediaAdjustAllDice(10, 25, 8);  // 1st: New Dice Border,   2nd: New Dice Width,   3rd: New Dice Gap
   }
 }
 
-function mediaAdjustAllTile() {
+function mediaAdjustAllTile(newTileBorder, newTileWidth, newTileGap) {
  
-  const newContainerHeight = tileTop + (tileBorder * 2) + (tileRows * tileWidth) + ((tileRows - 1) * tileGap);
-  const newContainerWidth = tileLeft + (tileBorder * 2) + (tileCols * tileWidth) + ((tileCols - 1) * tileGap);
+  let startTop = tileTop + tileBorder;
+  let startLeft = tileLeft + tileBorder;
+  let newStartTop = tileTop + newTileBorder;
+  let newStartLeft = tileLeft + newTileBorder;
+
+  const allGrid = document.getElementsByClassName('tile');
+
+  for (let i = 0; i < allGrid.length; i++) {
+    const topDiff = parseInt(allGrid[i].style.top) - startTop;
+    const leftDiff = parseInt(allGrid[i].style.left) - startLeft;
+    const rowPos = topDiff / (tileWidth + tileGap);
+    const colPos = leftDiff / (tileWidth + tileGap);
+
+    allGrid[i].style.height = newTileWidth + 'px';
+    allGrid[i].style.width = newTileWidth + 'px';
+    allGrid[i].style.top = newStartTop + (rowPos * newTileWidth) + (rowPos * newTileGap) + 'px';
+    allGrid[i].style.left = newStartLeft + (colPos * newTileWidth) + (colPos * newTileGap) + 'px';
+
+  }
+  
+  tileBorder = newTileBorder;
+  tileWidth = newTileWidth;
+  tileGap = newTileGap;
   
   const tileContainer = document.getElementById("tile-game-area");
-  tileContainer.style.height = newContainerHeight + "px";
-  tileContainer.style.width =  newContainerWidth + "px";
+  tileContainer.style.height = tileTop + tileContainerHeight() + 'px';
+  tileContainer.style.width =  tileLeft + tileContainerWidth() + 'px';
+  
+  const tileBackground = document.getElementById("tile-back");
+  tileBackground.style.height = tileContainerHeight() + 'px';
+  tileBackground.style.width =  tileContainerWidth() + 'px';
 
-  const allTile = document.getElementsByClassName('tile');
-  for (let i = 0; i < allTile.length; i++) {
-    allTile[i].style.height = tileWidth+ 'px';
-    allTile[i].style.width = tileWidth+ 'px';
-  }
+  const tileDotted = document.getElementById("tile-dotted");
+  tileDotted.style.height = tileDottedHeight() + 'px'; 
+  tileDotted.style.width = tileDottedWidth() + 'px';
+  tileDotted.style.top = tileDottedTop() + 'px';
+  tileDotted.style.left = tileDottedLeft() + 'px';
+
 }
 
-function mediaAdjustAllDice() {
-  
-  const newContainerHeight = diceTileTop + (diceTileBorder * 2) + (diceRows * diceTileWidth) + ((diceTileRows - 1) * tileGap);
-  const newContainerWidth = diceTileLeft + (diceTileBorder * 2) + (diceCols * diceTileWidth) + ((diceTileCols - 1) * tileGap);
+function mediaAdjustAllDice(newDiceBorder, newDiceWidth, newDiceGap) {
 
-  const diceContainer = document.getElementById("grid-area");
-  tileContainer.style.height = newContainerHeight + 'px';
-  tileContainer.style.width = newContainerWidth + 'px';
+  let startTop = diceTileTop + diceTileBorder;
+  let startLeft = diceTileLeft + diceTileBorder;
+  let newStartTop = diceTileTop + newDiceBorder;
+  let newStartLeft = diceTileLeft + newDiceBorder;
 
-  const allDice = document.getElementsByClassName('dice');
-  for (let i = 0; i < allDice.length; i++) {
-    allDice[i].style.height = diceTileWidth+ 'px';
-    allDice[i].style.width = diceTileWidth+ 'px';
+  const allGrid = document.getElementsByClassName('dice');
+
+  for (let i = 0; i < allGrid.length; i++) {
+    const topDiff = parseInt(allGrid[i].style.top) - startTop;
+    const leftDiff = parseInt(allGrid[i].style.left) - startLeft;
+    const rowPos = topDiff / (diceTileWidth + diceTileGap);
+    const colPos = leftDiff / (diceTileWidth + diceTileGap);
+
+    allGrid[i].style.height = newDiceWidth + 'px';
+    allGrid[i].style.width = newDiceWidth + 'px';
+    allGrid[i].style.top = newStartTop + (rowPos * newDiceWidth) + (rowPos * newDiceGap) + 'px';
+    allGrid[i].style.left = newStartLeft + (colPos * newDiceWidth) + (colPos * newDiceGap) + 'px';
+
   }
+  
+  diceTileBorder = newDiceBorder;
+  diceTileWidth = newDiceWidth;
+  diceTileGap = newDiceGap;
+  
+  const tileContainer = document.getElementById("grid-area");
+  tileContainer.style.height = diceTileTop + diceContainerHeight() + 'px';
+  tileContainer.style.width =  diceTileLeft + diceContainerWidth() + 'px';
+  
+  const tileBackground = document.getElementById("dice-back");
+  tileBackground.style.height = diceContainerHeight() + 'px';
+  tileBackground.style.width =  diceContainerWidth() + 'px';
+ 
+  const diceDotted = document.getElementById("dice-dotted");
+  diceDotted.style.height = diceDottedHeight() + 'px'; 
+  diceDotted.style.width = diceDottedWidth() + 'px';
+  diceDotted.style.top = diceDottedTop() + 'px';
+  diceDotted.style.left = diceDottedLeft() + 'px';
 }
