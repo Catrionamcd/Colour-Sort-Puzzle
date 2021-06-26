@@ -513,13 +513,27 @@ function timerCount() {
 }
 
 function checkMediaQuery() {
-  const media414max = window.matchMedia("(max-width: 414px)");  
+  const media320max = window.matchMedia("(max-width: 320px)");
+  const media414max = window.matchMedia("(max-width: 414px)");
   const media415min = window.matchMedia("(min-width: 415px)");   
-  if (media414max.matches) {
-    mediaAdjust414max(); 
+  if (media320max.matches) {
+    mediaAdjust320max();
+  } else if (media414max.matches) {
+    mediaAdjust414max();
   } else if (media415min.matches) {
     mediaAdjust415min(); 
   }
+}
+
+function mediaAdjust320max() {
+  if (mediaInUse == "320max") {
+    return;
+  }
+
+  mediaAdjustAllDice(6, 25, 5);  // 1st: New Dice Border,   2nd: New Dice Width,   3rd: New Dice Gap
+  mediaAdjustAllTile(8, 35, 6);    // 1st: New Tile Border,   2nd: New Tile Width,   3rd: New Tile Gap
+  mediaInUse = "320max";
+  
 }
 
 function mediaAdjust414max() {
@@ -527,8 +541,8 @@ function mediaAdjust414max() {
     return;
   }
 
-  mediaAdjustAllTile(8, 35, 6);    // 1st: New Tile Border,   2nd: New Tile Width,   3rd: New Tile Gap
   mediaAdjustAllDice(6, 25, 5);  // 1st: New Dice Border,   2nd: New Dice Width,   3rd: New Dice Gap
+  mediaAdjustAllTile(8, 60, 6);    // 1st: New Tile Border,   2nd: New Tile Width,   3rd: New Tile Gap
   mediaInUse = "414max";
   
 }
@@ -538,8 +552,8 @@ function mediaAdjust415min() {
     return;
   }
 
-  mediaAdjustAllTile(10, 50, 8);    // 1st: New Tile Border,   2nd: New Tile Width,   3rd: New Tile Gap
   mediaAdjustAllDice(10, 50, 8);  // 1st: New Dice Border,   2nd: New Dice Width,   3rd: New Dice Gap
+  mediaAdjustAllTile(10, 50, 8);    // 1st: New Tile Border,   2nd: New Tile Width,   3rd: New Tile Gap
   mediaInUse = "415min";
   
 }
