@@ -3,7 +3,6 @@
 body {
     font-family: "Ubuntu", sans-serif;
     background-color: rgb(223, 219, 213);
-    /*background-image: url("/assets/images/Brick-Large.jpg");*/
 }
 
 .game-container {
@@ -20,6 +19,10 @@ body {
     margin-top: 5px;
 }
 
+/* The tiles on both the main colour grid and the dice grid will be rendered 
+   in javascript 
+*/
+
 .tile {
     border-radius: 4px;
     position: absolute;
@@ -29,18 +32,10 @@ body {
     border-radius: 4px;
     position: absolute;
 }
-/*
-#btn-instr-ctn {
-    height: 20px;
-    width: 100px;
-    margin-bottom: 90px;
-    border-radius: 5px;
-    position: relative; /*absolute;*/
-   /* background-color: slategrey;
-    top : 84px;
-    left : 300px;*/
-  /*  text-align: center;
-}*/
+
+/*  This is the Rule/Instruction button which when pressed will open up the 
+    modal window with the instructions of the game
+*/
 
 #btn-instruction {
     margin-top: 2px;
@@ -50,26 +45,25 @@ body {
     position: absolute;
     top: 0px;
     left: 0px;
-    /*border: 1px transparent;*/
     background-color: slategrey;
     font-size: 0.75rem;
     font-weight: bolder;
     color : white;
 }
 
+/* The container for the START button & START button
+*/
+
 #btn-container {
     height: 40px;
     width: 130px;
     margin-bottom: 15px;
     border-radius: 10px;
-    position: relative; /*absolute;*/
+    position: relative; 
     background-color: slategrey;
-    /*top : 84px;
-    left : 300px;*/
     text-align: center;
 }
  
-
 #btn-start {
     margin-top: 10px;
     margin-left: 2px;
@@ -81,32 +75,21 @@ body {
     color : white;
 }
 
+/*  This is the area of the game that shows the user the progress they are making.
+    It includes the amount of colour tiles that are matched with the dice colour
+    tiles. It also displays the amount of tiles moved in the game.
+*/
+
 .progress-area {
     position : relative;
     margin-left: 0px;
     color : black;
     font-size : 150%;
     font-weight: bolder;
-    /*border-radius : 10px;*/
     text-align: center;
 }
 
-#timer-area {
-    /*top : 370px;
-    left : 300px;*/
-    /*height: 80px;
-    /*width: 180px;*/
-    margin-top: 30px;
-    margin-left: 20px;
-    margin-right: 20px;
-    font-size: 300%;
-    position: relative; /*absolute;*/
-    color: slategrey;
-    /*background-color: brown;*/
-}
-
 #tiles-matched {
-    /*padding-top: 10px;*/
     margin-right: 10px;
 }
 
@@ -115,37 +98,57 @@ body {
     margin-right: 10px;
 }
 
-#empty-row {
+
+/*  The timer area will display a countdown clock, which will be set to
+    five minutes. The timer will be displayed between the two grids.
+*/
+
+#timer-area {
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 300%;
+    position: relative; 
+    color: slategrey;
+}
+
+/*  The empty row is used to force a new line for each area on screen  */
+
+.empty-row {
     flex-basis: 100%;
     height: 0px;
 }
 
-#empty-row-height {
-    flex-basis: 100%;
-    height: 30px;
-}
+/*  The grid area is where the DICE colour tiles are rendered on the screen.
+    There are 9 colours on the DICE that are displayed in 3 rows & 3 columns.
+*/
 
 #grid-area {
     position: relative;
-    /*width: 80%;*/
-    background-color:cornflowerblue;
     margin-top: 10px;
 }
 
+/*  The tile game area is where the main grid of colour tiles is rendered on the screen.
+    There are 6 different colours with 4 tiles of each colour. These are the tiles that
+    the user will move to play the game and try match the DICE colours within the countdown 
+    time.
+*/
+
 #tile-game-area {
     position: relative;
-    /*width: 80%;*/
     background-color: brown;
     margin-top: 10px;
 }
 
+/*  This is a message to the user to congratulate or commiserate with the user
+    depending on the outcome of the game.
+*/
+
 #game-result {
     color : red;
-    /*top: 500px;
-    left: 400px;*/
     margin-top: 30px;
     font-size : 150%;
-    position : relative; /*absolute;*/
+    position : relative; 
     text-align: center;
 }
 
@@ -154,7 +157,6 @@ body {
    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_image_shake
    Amended it to reduce the animation duration and iteration count.
 */
-
 
 .errorShaker {
     /* Start the shake animation and make the animation last for 0.5 seconds */
@@ -178,6 +180,10 @@ body {
     100% { transform: translate(1px, -2px) rotate(-1deg); }
   }
 
+
+/* The following css was taken from W3Schools, the link is :
+   https://www.w3schools.com/howto/howto_css_modals.asp
+*/
 
 /* The Modal (background) for Rules of the Game*/
 .modal {
@@ -219,7 +225,8 @@ body {
   }
 
 
-  
+/*  Media Queries for a smaller device */
+
 @media screen and (max-width: 320px) {
 
     #tile-game-area {
@@ -236,7 +243,6 @@ body {
 
     #btn-container {
         height: 30px;
-        /*width: 100px;*/
         border-radius: 10px;
         margin-right: 0px;
     }
@@ -257,6 +263,8 @@ body {
         font-size : 100%;
     }
 }
+
+/*  Media Queries for a larger screen  */
 
 @media screen and (min-width: 1200px){
     #grid-area {

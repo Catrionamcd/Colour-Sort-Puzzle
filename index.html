@@ -14,12 +14,17 @@
 <body>
     <section class="game-container">
 
+<!-- This is the name of the game which will be displayed in the center at the top of the screen -->
+
         <header id="game-name">
             Colour Sort Puzzle
         </header>
-        
-        <div id="empty-row"></div>
 
+<!-- An empty row is used to force a new line for each section on the screen -->
+        
+        <div class="empty-row"></div>
+
+<!-- The Rules/Instruction button is a Modal Window which will only display if the user clicks on the button -->
         <div >
             <button id="btn-instruction">Rules</button>
             <!-- The Modal -->
@@ -30,7 +35,7 @@
                 <span id="closeInstructions" class="close">&times;</span>
                 <h2>Instructions</h2>
                 <p>Press the START button to begin the game.</p>
-                <p>The colours on the smaller grid/dice will be mixed.</p>
+                <p>The colours on both grids will be mixed.</p>
                 <p>A countdown clock will be started.</p>
                 <p>Your challenge is to match the 9 inner tiles on the larger grid to the 9 colours on the dice.</p>
                 <p>Click or press a tile to move it.</p>
@@ -40,13 +45,16 @@
             </div>
         </div>
 
-
+<!-- This is the START button, once clicked the funtion startGame will run in javascript-->
         <div id="btn-container">
 
             <button id="btn-start" onclick="startGame()">Start</button>
 
         </div>
-        <div id="empty-row"></div>
+        <div class="empty-row"></div>
+
+<!-- The progress area will display to the user the amount of tile colours that are matched.
+     It will also display the amount of tiles moved -->
         <div class="progress-area">
 
             <span>Matched : </span><span id="tiles-matched">0</span>
@@ -55,21 +63,35 @@
 
         </div>
         
-        <div id="empty-row"></div>
+        <div class="empty-row"></div>
+
+<!-- The grid area is where the DICE colours are appended to in javascript. The grid area
+    is made up of 3 rows and 3 columns of 9 tile colours -->
 
         <div id="grid-area"></div>
  
+<!-- The timer are will display a fontawesome stopwatch and a time counting down form 5 minutes -->  
+
         <div id="timer-area">
             <span><i class="fas fa-stopwatch"></i></span><span id="timer">  0:00</span>      
         </div>
-        
+
+<!-- The tile game area is where the main grid of tile colours are appended to in javascript. The tile
+     game area is made up of 24 tile, 6 colours and 4 of each colour. There will also be a blank tile
+     to allow the user space to move the tiles to match the DICE tiles-->     
+
         <div id="tile-game-area"></div>
 
-        <div id="empty-row"></div>
-            
+        <div class="empty-row"></div>
+
+<!-- The game result will display a message to inform the user if that they have completed the match or
+     that the time is up -->            
+
         <div id="game-result"></div>
     </section>
-        
+
+<!-- The javascript file renders the two colour tile grids on the screen by creating a div for each colour tile-->  
+
     <script src = "assets/js/script.js"></script>
 
 </body>

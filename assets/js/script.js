@@ -1,6 +1,7 @@
-/* Set the variables for columns & rows to 5
-   Set the variable for tile width to 40 & gap between each tile to 6
-   Set the position of tile left to 200 & top to 100
+/* Set the variables for columns & rows to 5 for the main colour grid
+   Set the variable for tile width to 50 & gap between each tile to 8
+   Set the position of tile left & top to 0
+   Set the variable for the border around the grid to 10.
 */
    
 const tileCols = 5;
@@ -10,6 +11,12 @@ let tileGap = 8;
 let tileTop = 0;
 let tileLeft = 0;
 let tileBorder = 10;
+
+/* Functions to calculate the dimensions of the main tile colour grid container and 
+   the dotted line around the 9 inner tiles on the main colour grid using 
+   the variables set up. Also to calculate the top and left of each tile. These will
+   also be used in the media query functions.
+*/
 
 function tileContainerHeight() {
   return (tileBorder * 2) + (tileRows * tileWidth) + ((tileRows - 1) * tileGap);
@@ -30,6 +37,11 @@ function tileDottedLeft() {
   return tileLeft + tileBorder + tileWidth + Math.round(tileGap / 2);
 }
 
+/* Set the variables for columns & rows to 3 for the DICE colour grid
+   Set the variable for tile width to 50 & gap between each tile to 8
+   Set the position of tile left & top to 0
+   Set the variable for the border around the DICE grid to 10.
+*/
 
 const diceCols = 3;
 const diceRows = 3;
@@ -38,6 +50,11 @@ let diceTileGap = 8;
 let diceTileTop = 0;
 let diceTileLeft = 0;
 let diceTileBorder = 10;
+
+/* Functions to calculate the dimensions of the DICE colour grid container and 
+   the dotted line around the DICE with the variables set up. Also to calculate
+   the top and left of each tile. These will also be used in the media query functions.
+*/
 
 function diceContainerHeight() {
   return (diceTileBorder * 2) + (diceRows * diceTileWidth) + ((diceRows - 1) * diceTileGap);
@@ -58,16 +75,25 @@ function diceDottedLeft() {
   return diceTileLeft + Math.round(diceTileBorder / 2);
 }
 
+/* The Blank tile id will be stored and the array of dice colours and an array of the 9 inner tiles on 
+   the main tile grid area*/
 
 let blankTileId = 0;
 let diceColourArray = new Array(diceRows * diceCols);
 let gridColourArray = new Array(diceRows * diceCols);
+
+// The amount of tiles clicked to be moved will be stored and the tiles matched at any time
+
 let tilesClickedCount = 0;
 let tilesMatch = 0;
+
+/* The start time is set to zeros, the time allowed is set to 5 minutes, game in play set to false until
+   the game start function is called. The media size is set to large.
+*/
+
 let gameStartTime = 0;
 let timeAllowed = 300;
 let gameInPlay = false;
-let gameWin = false;
 let mediaInUse = "large";
 
 // There are six different colour tiles in the colour grid. Each colour appears 4 times
@@ -78,7 +104,12 @@ const maxTileColor = 4;
 setInterval(timerCount, 100);
 
 const btnInstruction = document.getElementById('btn-instruction');
+
 // Rules of the Game
+/* The following javascript was taken from W3Schools, the link is :
+   https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_image_shake
+   The id names were changed for this game.
+*/
 // Get the modal Instruction Window
 var modal = document.getElementById("instructionWindow");
 
@@ -99,19 +130,15 @@ window.onclick = function(event) {
   }
 };
 
-
-
-// Get the grid area from the html div by it's grid area id
+// Get the grid areas for the DICE & main colour tile grid from the html div by it's grid area id
 
 const gridAreaDiv = document.getElementById('grid-area');
 const tileAreaDiv = document.getElementById('tile-game-area');
 let tileId = 0;
 
-
-
-/*  Call the Create tile dice function. This function displays 9 colors tiles in 3 
-    rows & 3 columns. The nine inner tiles on the coloue grid will have to match these
-    9 tiles
+/*  Firstly call the create background function for the DICE grid, then the create the dotted line
+    function, then create the DICE grid function. This will create the 3 row and 3 columns of 9
+    colour tiles.
 */
 
 createDiceBackground();
@@ -121,38 +148,32 @@ createDiceDottedLine();
 createDiceGrid();
 
 /* Call the Create Black Background function to render a black background on the screen
-   behind the colour grid
+   behind the colour grid. Then call the dotted line function for around the 9 inner tiles
+   on the main grid that will have to be matched with the 9 DICE colours. Then the create
+   main Tile grid function which will create the main tile grid of 24 coloured tiles.
 */
 
 createBlackBackground();
 
-/* Call the Create Dotted line function to render a dotted line around the nine inner tiles
-   that will have to match with the 9 tiles on the dice
-*/
-
 createDottedLine();
-
-/*  Call the Create tile grid function. This funtion displays 5 columns & 5 rows 
-    of the  different colour tiles
-*/ 
 
 createTileGrid();
 
-// Function to create the colour tile grid
+
+// Function to create the main colour tile grid
 
 function createTileGrid() {
 
   let colorCount = 0;
   let currColor = 0;
-  //let tileId = 0;
     
   let currTileTop = tileTop + tileBorder;
         
-  for (nextRow = 0; nextRow < tileRows; ++nextRow) {
+  for (let nextRow = 0; nextRow < tileRows; ++nextRow) {
                 
     let currTileLeft = tileLeft + tileBorder;
 
-    for (nextCol = 0; nextCol < tileCols; ++nextCol) {
+    for (let nextCol = 0; nextCol < tileCols; ++nextCol) {
            
       let newTile = document.createElement('div');
       
@@ -186,21 +207,21 @@ function createTileGrid() {
   }
 }
      
+
 // Function to create the colour DICE grid
 
 function createDiceGrid() {
 
   let colorCount = 0;
   let currColor = 0;
-  //let tileId = 0;
-    
+  
   let currTileTop = diceTileTop + diceTileBorder;
         
-  for (nextRow = 0; nextRow < diceRows; ++nextRow) {
+  for (let nextRow = 0; nextRow < diceRows; ++nextRow) {
                 
     let currTileLeft = diceTileLeft + diceTileBorder;
 
-    for (nextCol = 0; nextCol < diceCols; ++nextCol) {
+    for (let nextCol = 0; nextCol < diceCols; ++nextCol) {
            
       let newTile = document.createElement('div');
       
@@ -229,7 +250,7 @@ function createDiceGrid() {
 
 }
 
-/* Function to render the black background for the colour tile grid.
+/* Function to render the black background for the main colour tile grid.
    Calculate the size of that background by adding border, tile widths
    and gaps between tiles
 */
@@ -251,7 +272,7 @@ function createBlackBackground() {
   tileContainer.style.width =  tileLeft + tileContainerWidth() + 'px';
 }
 
-/* Function to render the black background for the dice tile grid.
+/* Function to render the black background for the DICE tile grid.
    Calculate the size of that background by using the border, tile widths
    and gaps between tiles for the dice grid
 */
@@ -274,8 +295,8 @@ function createDiceBackground() {
   
 }
 
-/* Function to render the dotted line around the inner nine tiles on the colour grid. 
-   The colour tiles inside the dotted line will have to match the nine colour files on 
+/* Function to render the dotted line around the inner nine tiles on the main colour grid. 
+   The colour tiles inside the dotted line will have to match the nine colour tiles on 
    the dice.  
 */
 
@@ -295,7 +316,8 @@ function createDottedLine() {
 
 }
 
-// Function to render the dotted line around the dice grid. 
+
+// Function to render the dotted line around the DICE grid. 
  
 function createDiceDottedLine() { 
 
@@ -313,7 +335,10 @@ function createDiceDottedLine() {
 
 }
 
-//  Function to start the game
+/*  Function to start the game. First a function to mix up the colours in the main tile grid will be called.
+    Then a function to mix up the colours in the DICE grid. A function to store the DICE colours for comparison
+    will be called.
+*/
 
 function startGame() {
 
@@ -337,41 +362,9 @@ function startGame() {
   
 }
 
-//  Function to mix up the colours on the DICE grid & to start the game.
 
-function mixDiceColours() {
-  
-  let mixTile = document.getElementsByClassName('dice');
-  for (let i = 0; i < mixTile.length; i++) {
-    const randomColor = Math.floor(Math.random() * 6);
-    mixTile[i].style.backgroundColor = tileColors[randomColor];
-  }
+//  Function to mix up the position of the tile colours on the main tile grid.
 
-} 
-
-//  Function to check if each Dice colour is not used more than maxTileColor times.
-
-function maxColourExceeded() {
-
-  let colourCount = new Array (tileColors.length);
-  for (let x = 0; x < tileColors.length; ++x) {
-    colourCount[x] = 0;
-  }
-
-  let mixTile = document.getElementsByClassName('dice');
-  for (let i = 0; i < mixTile.length; i++) {
-    let index = tileColors.indexOf(mixTile[i].style.backgroundColor);
-    ++colourCount[index];
-  }
-
-  for (let y = 0; y < tileColors.length; y++) {
-    if (colourCount[y] > maxTileColor) {
-      return true;  
-    }
-  }
-  return false;
-}
- 
 function mixTileColours() {
 
   let mixTile = document.getElementsByClassName('tile');
@@ -397,7 +390,50 @@ function mixTileColours() {
 
 } 
 
-//  Function for when a tile is clicked to be moved
+
+//  Function to mix up the colours on the DICE grid.
+
+function mixDiceColours() {
+  
+  let mixTile = document.getElementsByClassName('dice');
+  for (let i = 0; i < mixTile.length; i++) {
+    const randomColor = Math.floor(Math.random() * 6);
+    mixTile[i].style.backgroundColor = tileColors[randomColor];
+  }
+
+} 
+
+
+//  Function to check if each Dice colour is not used more than maxTileColor times.
+
+function maxColourExceeded() {
+
+  let colourCount = new Array (tileColors.length);
+  for (let x = 0; x < tileColors.length; ++x) {
+    colourCount[x] = 0;
+  }
+
+  let mixTile = document.getElementsByClassName('dice');
+  for (let i = 0; i < mixTile.length; i++) {
+    let index = tileColors.indexOf(mixTile[i].style.backgroundColor);
+    ++colourCount[index];
+  }
+
+  for (let y = 0; y < tileColors.length; y++) {
+    if (colourCount[y] > maxTileColor) {
+      return true;  
+    }
+  }
+  return false;
+}
+ 
+
+/*  Function for when a tile is clicked to be moved. Only a tile beside a blank tile can be
+    moved. If a tile is clicked that can't be moved, that tile will shake (code taken from W3schools).
+    A tiles clicked count will be accumulated for display. Each time a tile is move a store colours
+    function will be called. A checkColourMatch function is called to check colours in stored array
+    to stored dice colours array.
+*/
 
 function tileClicked(tileId) {
 
@@ -453,9 +489,9 @@ function storeDiceColours() {
   const allDice = document.getElementsByClassName('dice');
 
   for (let i = 0; i < allDice.length; i++) {
-    const topDiff = parseInt(allDice[i].style.top) - startTop;   // diff between top of tile & start top
-    const leftDiff = parseInt(allDice[i].style.left) - startLeft; // diff between left of tile & start left
-    const rowPos = topDiff / (diceTileWidth + diceTileGap);  //get row position of tile by 
+    const topDiff = parseInt(allDice[i].style.top) - startTop;   
+    const leftDiff = parseInt(allDice[i].style.left) - startLeft; 
+    const rowPos = topDiff / (diceTileWidth + diceTileGap);  
     const colPos = leftDiff / (diceTileWidth + diceTileGap);
     diceColourArray[rowPos * diceCols + colPos] = allDice[i].style.backgroundColor;
   }
@@ -490,7 +526,7 @@ function checkColourMatch() {
   
   tilesMatch = 0;
 
-  for (i=0; i < gridColourArray.length; ++i) {
+  for (let i = 0; i < gridColourArray.length; ++i) {
     if (gridColourArray[i] == diceColourArray[i]) {
         ++tilesMatch;
     }
@@ -505,11 +541,14 @@ function checkColourMatch() {
   }
 }
 
-// Timer Function
+/* Timer Function, the time allowed is set to 5 minutes(300), When the time remaining
+   is less the 30 secs, the time displayed will turn red. When remaining is 0, the game 
+   is finished and a message will be displayed.
+*/
 
 function timerCount() {
   
-  checkMediaQuery();
+  checkMediaQuery();     // Calling checkMediaQuery function to see if screen size has changed
   
   if (!gameInPlay) {    // If game not in play
     return;             // Exit out
@@ -533,6 +572,12 @@ function timerCount() {
 
 }
 
+
+/* Media Queries, code taken and adapted for this game from 
+    https://www.w3schools.com/howto/howto_js_media_queries.asp
+    https://css-tricks.com/working-with-javascript-media-queries/
+    https://webdevetc.com/blog/matchmedia-events-for-window-resizes/
+*/
 function checkMediaQuery() {
   const media320max = window.matchMedia("(max-width: 320px)");
   const media350max = window.matchMedia("(max-width: 360px)");
@@ -550,8 +595,10 @@ function checkMediaQuery() {
   }
 }
 
+/* Functions to call & pass parameters to dynamically change dimensions for different screen sizes */
+
 function mediaAdjust320max() {
-  if (mediaInUse == "320max") {
+  if (mediaInUse == "320max") {     // if already rendered for this size return out of this function
     return;
   }
 
@@ -562,7 +609,7 @@ function mediaAdjust320max() {
 }
 
 function mediaAdjust350max() {
-  if (mediaInUse == "350max") {
+  if (mediaInUse == "350max") {   // if already rendered for this size return out of this function
     return;
   }
 
@@ -573,7 +620,7 @@ function mediaAdjust350max() {
 }
 
 function mediaAdjust414max() {
-  if (mediaInUse == "414max") {
+  if (mediaInUse == "414max") {   // if already rendered for this size return out of this function
     return;
   }
 
@@ -584,7 +631,7 @@ function mediaAdjust414max() {
 }
 
 function mediaAdjust415min() {
-  if (mediaInUse == "415min") {
+  if (mediaInUse == "415min") {   // if already rendered for this size return out of this function
     return;
   }
 
@@ -593,6 +640,8 @@ function mediaAdjust415min() {
   mediaInUse = "415min";
   
 }
+
+// Function to adjust the main tile area, background and dotted line using the parameters passed for sizing
 
 function mediaAdjustAllTile(newTileBorder, newTileWidth, newTileGap) {
  
@@ -635,6 +684,8 @@ function mediaAdjustAllTile(newTileBorder, newTileWidth, newTileGap) {
   tileDotted.style.left = tileDottedLeft() + 'px';
 
 }
+
+// Function to adjust the DICE area, background and dotted line using the parameters passed for sizing
 
 function mediaAdjustAllDice(newDiceBorder, newDiceWidth, newDiceGap) {
 
