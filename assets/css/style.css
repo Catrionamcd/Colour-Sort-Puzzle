@@ -3,6 +3,7 @@
 body {
     font-family: "Ubuntu", sans-serif;
     background-color: rgb(223, 219, 213);
+    /*background-image: url("/assets/images/Brick-Large.jpg");*/
 }
 
 .game-container {
@@ -58,7 +59,7 @@ body {
 
 #btn-container {
     height: 40px;
-    width: 110px;
+    width: 130px;
     margin-bottom: 15px;
     border-radius: 10px;
     position: relative; /*absolute;*/

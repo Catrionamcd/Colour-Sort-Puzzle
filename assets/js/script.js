@@ -5,11 +5,11 @@
    
 const tileCols = 5;
 const tileRows = 5;
-var tileWidth = 50;
-var tileGap = 8;
-var tileTop = 0; //150;
-var tileLeft = 0; //600;
-var tileBorder = 10;
+let tileWidth = 50;
+let tileGap = 8;
+let tileTop = 0;
+let tileLeft = 0;
+let tileBorder = 10;
 
 function tileContainerHeight() {
   return (tileBorder * 2) + (tileRows * tileWidth) + ((tileRows - 1) * tileGap);
@@ -33,11 +33,11 @@ function tileDottedLeft() {
 
 const diceCols = 3;
 const diceRows = 3;
-var diceTileWidth = 50;
-var diceTileGap = 8;
-var diceTileTop = 0; //150;
-var diceTileLeft = 0; //300;
-var diceTileBorder = 10;
+let diceTileWidth = 50;
+let diceTileGap = 8;
+let diceTileTop = 0;
+let diceTileLeft = 0;
+let diceTileBorder = 10;
 
 function diceContainerHeight() {
   return (diceTileBorder * 2) + (diceRows * diceTileWidth) + ((diceRows - 1) * diceTileGap);
@@ -59,15 +59,15 @@ function diceDottedLeft() {
 }
 
 
-var blankTileId = 0;
-var diceColourArray = new Array(diceRows * diceCols);
-var gridColourArray = new Array(diceRows * diceCols);
-var tilesClickedCount = 0;
-var tilesMatch = 0;
-var gameStartTime = 0;
-var timeAllowed = 40;
-var gameInPlay = false;
-var gameWin = false;
+let blankTileId = 0;
+let diceColourArray = new Array(diceRows * diceCols);
+let gridColourArray = new Array(diceRows * diceCols);
+let tilesClickedCount = 0;
+let tilesMatch = 0;
+let gameStartTime = 0;
+let timeAllowed = 300;
+let gameInPlay = false;
+let gameWin = false;
 let mediaInUse = "large";
 
 // There are six different colour tiles in the colour grid. Each colour appears 4 times
@@ -317,10 +317,12 @@ function createDiceDottedLine() {
 
 function startGame() {
 
-  mixDiceColours();
-  while(maxColourExceeded()) {
-    mixDiceColours();
-  }
+  mixTileColours();
+
+  do {
+    mixDiceColours();               // Assign random colours on each dice
+  } while (maxColourExceeded());    // but re-do if there are more than MaxTileColor showing on all dice
+  
   storeDiceColours();
 
   gameStartTime = new Date();
@@ -369,7 +371,32 @@ function maxColourExceeded() {
   }
   return false;
 }
-  
+ 
+function mixTileColours() {
+
+  let mixTile = document.getElementsByClassName('tile');
+  for (let x = 0; x < 20; ++x) {
+    const tileOne = Math.floor(Math.random() * (tileCols * tileRows));
+    const tileTwo = Math.floor(Math.random() * (tileCols * tileRows));
+    if (tileOne == tileTwo) {
+      continue;
+    }
+
+    const tileOneTop = parseInt(mixTile[tileOne].style.top, 10);
+    const tileOneLeft = parseInt(mixTile[tileOne].style.left, 10);
+    const tileTwoTop = parseInt(mixTile[tileTwo].style.top, 10);
+    const tileTwoLeft = parseInt(mixTile[tileTwo].style.left, 10);
+
+    mixTile[tileOne].style.top = tileTwoTop + 'px';
+    mixTile[tileOne].style.left = tileTwoLeft + 'px';
+
+    mixTile[tileTwo].style.top = tileOneTop + 'px';
+    mixTile[tileTwo].style.left = tileOneLeft + 'px';
+
+  }
+
+} 
+
 //  Function for when a tile is clicked to be moved
 
 function tileClicked(tileId) {
