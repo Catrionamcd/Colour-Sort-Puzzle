@@ -25,7 +25,35 @@ The inspiration for this project came from a game called Rubiks Race.
 [Wireframes](https://github.com/Catrionamcd/Colour-Sort-Puzzle/tree/master/assets/wireframes)
 ## Features
 
+
 ### Existing Features
+
+#### Rules/Instructions
+* A rules button is displayed on the top left hand side of the screen.
+
+![alt text](assets/documentation/Colour-Sort-Rules-Btn.png)
+
+
+ Once clicked the player will be presented with a modal window with the game rules or instructions. The player can exit this window and return to the game by pressing the 'x' on the top right hand side of the window or simply by clicking outside the window.
+
+![alt text](assets/documentation/Instructions-Window.png)
+#### Start/Restart Button
+Once the player presses the START button the colour tiles will be mixed up on both grids. 
+
+![alt text](assets/documentation/Start-Btn.png)
+
+The button will change to a RE-START button and a countdown timer will start counting down from 5 minutes.
+
+![alt text](assets/documentation/Restart-Btn.png)
+
+#### Timer
+As soon as the start button is pressed the timer will start counting down from five minutes, as sson as 03 secs is reached the time will be displayed in red.
+ 
+
+![alt text](assets/documentation/Timer.png) ![alt text](assets/documentation/30Sec-Timer.png)
+
+
+ 
 
 ### Features Left to Implement
 * Leader Board Page - In the original desgin of the game, I had hoped to allow the user to enter their name and their scores, time taken to complete the puzzle and the amount of moves made. These details would be displayed on a Leader Board screen with a list of other players. I had planned to display up to 6 names. This list would only be stored for the duration of the game.
@@ -47,16 +75,42 @@ The inspiration for this project came from a game called Rubiks Race.
 * GitPod - Git was used for version control by utilizing the Gitpod terminal to add and commit changes with messages to Git and Push to GitHub.
 * GitHub - used to store the project code and deploy the project.
 * PicResize - The images of the physical game were reduced in size using PicResize.
+* Google Chrome Dev Tools - this was used to display console.log while debugging JavaScript code. It was also used to test reponsiveness for the game and how it rendered on the different size devices.
 
 
 ## Testing
 
 ### Validator Testing
+HTML
+* No errors were found in the code when passing through the W3C Markup Validation Service,
+[HTML](https://validator.w3.org/)
+
+CSS
+* No errors were found in the code when passing through the official (Jigsaw) validator,
+ [CSS](https://jigsaw.w3.org/css-validator/)
+
+ JavaScript
+ * No errors were found in the code when passing through the JSHint, a JavaScript Code Quality Tool,
+ [JavaScript](https://jshint.com/)
+
 
 ### Bug Fixes
 
 
 ## Deployment
+The site was deployed to GitHub pages. The steps to deploy the site are :
+
+* Opened GitHub & selected the Colour-Sort-Puzzle repository from the repositories listed on the left hand side of the screen.
+
+* Within the Colour Sort Puzzle repository select the settings button at the top right hand side of the screen.
+
+* In the settings page, scroll down & choose the Github pages. 
+* In the Github page select a source of master as a branch name
+from the source section drop-down menu.
+* Once the branch name is selected click save.
+
+The deployed link will be published at the top of the GitHub page.
+The live link can be found here - https://catrionamcd.github.io/Colour-Sort-Puzzle/
 
 ## Credits
 
