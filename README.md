@@ -10,6 +10,9 @@ Once the colour tiles are matched the timer will stop and a congratulatory messa
 
 There is also an instruction button at the top of the screen. Once this button is pressed a modal window with instructions will explain the rules of the game. There will be an exit from this window back to the game.
 
+![alt text](assets/images/multi-device.png)
+
+
 ## User Stories
 ## Design Process
 The inspiration for this project came from a game called Rubiks Race.
@@ -18,6 +21,8 @@ The inspiration for this project came from a game called Rubiks Race.
 
  This game is in our home for many years and all members of the family. big and small have had hours of enjoyment playing it. With the physical game you can play against another player. The first to solve the puzzle wins but it can be played solo. I adapted this game for my project to play against a timer countdown.
 
+### Wireframes
+[Wireframes](https://github.com/Catrionamcd/Colour-Sort-Puzzle/tree/master/assets/wireframes)
 ## Features
 
 ### Existing Features
