@@ -33,7 +33,7 @@ The inspiration for this project came from a game called Rubiks Race.
 1. Levels of difficulty - the player could be presented with a choice as to  what level of difficulty they would like to play. This could be determined by the countdown time. There could be three different levels with a different countdown time for solving the puzzle. I have a countdown of 5 minutes, that could be the intermediate level. For those who need a bit more time, possible 7 minutes and for those that really would like a challenge, possible 3 minutes.
 
 2. The amount of coloured tiles could be extended.
-3. The coloured tiles could diplay images like cartoon characters for younger players to try match.
+3. The coloured tiles could display images like cartoon characters for younger players to try match.
 
 ## Technologies
 ### Languages Used
