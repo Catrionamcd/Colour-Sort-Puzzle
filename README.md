@@ -30,9 +30,9 @@ I set up a test repository to test if I could build the grid of colours using ja
 ### Existing Features
 
 #### Rules/Instructions
-A rules button is displayed on the top left hand side of the screen.
+A rules button is displayed beside the start button at top of the screen.
 
-![alt text](assets/documentation/Colour-Sort-Rules-Btn.png)
+![alt text](assets/documentation/Rules-Start-Btn.png)
 
 
 Once clicked the player will be presented with a modal window with the game rules or instructions. The player can exit this window and return to the game by pressing the 'x' on the top right hand side of the window or simply by clicking outside the window.
@@ -43,8 +43,6 @@ Code used and amended from W3Schools, the link is :
 ![alt text](assets/documentation/Instructions-Window.png)
 #### Start/Restart Button
 Once the player presses the START button the colour tiles will be mixed up on both grids. The counters of tiles matched and tiles moves will be reset.
-
-![alt text](assets/documentation/Start-Btn.png)
 
 The button will change to a RE-START button and a countdown timer will start counting down from 5 minutes.
 
