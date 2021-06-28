@@ -25,13 +25,23 @@
         <div class="empty-row"></div>
 
 <!-- The Rules/Instruction button is a Modal Window which will only display if the user clicks on the button -->
-        <div >
+        
+
+        <div class="btn-container">
+
+           <button id="btn-start" onclick="startGame()">Start</button>
+
+        </div>
+
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+        <div class="btn-container">
             <button id="btn-instruction">Rules</button>
             <!-- The Modal -->
             <div id="instructionWindow" class="modal">
 
-                <!-- Modal content -->
-                <div class="modal-content">
+              <!-- Modal content -->
+              <div class="modal-content">
                 <span id="closeInstructions" class="close">&times;</span>
                 <h2>Rules/Instructions</h2>
                 <p>Press the START button to begin the game.</p>
@@ -40,17 +50,18 @@
                 <p>Your challenge is to match the 9 inner tiles on the larger grid to the 9 colours on the dice.</p>
                 <p>Click or press a tile to move it.</p>
                 <p>You can only move a tile if there is an empty black space beside it.</p>
-                </div>
-            
+              </div>
             </div>
         </div>
+        
 
 <!-- This is the START button, once clicked the funtion startGame will run in javascript-->
-        <div id="btn-container">
+<!--        <div id="btn-container">
 
             <button id="btn-start" onclick="startGame()">Start</button>
 
-        </div>
+        </div> -->
+
         <div class="empty-row"></div>
 
 <!-- The progress area will display to the user the amount of tile colours that are matched.

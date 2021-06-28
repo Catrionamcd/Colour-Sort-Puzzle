@@ -37,24 +37,29 @@ body {
     modal window with the instructions of the game
 */
 
-#btn-instruction {
+/* #btn-instruction {
     margin-top: 2px;
     margin-left: 2px;
     margin-bottom: 20px;
     text-transform :uppercase;
     position: absolute;
     top: 0px;
-    left: 0px;
+    left: 0px; 
     background-color: slategrey;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: bolder;
     color : white;
 }
+*/
 
 /* The container for the START button & START button
 */
 
-#btn-container {
+.btn-area {
+    position : relative;
+}
+
+.btn-container {
     height: 40px;
     width: 130px;
     margin-bottom: 15px;
@@ -62,6 +67,18 @@ body {
     position: relative; 
     background-color: slategrey;
     text-align: center;
+}
+
+#btn-instruction {
+    margin-top: 10px;
+    margin-left: 2px;
+    position: relative;
+    text-transform :uppercase;
+    border: 1px transparent;
+    background-color: slategrey;
+    font-size: 1rem;
+    font-weight: bolder;
+    color : white;
 }
  
 #btn-start {
@@ -237,22 +254,34 @@ body {
         font-size: 1.5rem;
     }
 
-    #btn-instruction {
+    /*#btn-instruction {
         margin-bottom: 10px;
     }
-
-    #btn-container {
+    */
+    .btn-container {
         height: 30px;
+        width: 100px;
         border-radius: 10px;
-        margin-right: 0px;
+    }
+     
+    #btn-instruction {
+        margin-top: 7px;
+        font-size : 0.75rem;
+
     }
 
     #btn-start {
+        margin-top: 7px;
+        font-size : 0.75rem;
+
+    }
+   /* #btn-start {
         margin-top: 5px;
         margin-left: 2px;
         border: 1px transparent;
         font-size: 1rem;
     }
+    */
 
     .progress-area {
         font-size : 100%;
@@ -267,6 +296,7 @@ body {
 /*  Media Queries for a larger screen  */
 
 @media screen and (min-width: 1200px){
+    
     #grid-area {
         margin-top: 40px;
     }
