@@ -19,7 +19,7 @@ The inspiration for this project came from a game called Rubiks Race.
 
 ![alt text](assets/images/RubiksRace.jpg)
 
- This game is in our home for many years and all members of the family. big and small have had hours of enjoyment playing it. With the physical game you can play against another player. The first to solve the puzzle wins but it can be played solo. I adapted this game for my project to play against a timer countdown.
+ This game is in our home for many years and all members of the family, big and small have had hours of enjoyment playing it. With the physical game you can play against another player. The first to solve the puzzle by matching the nine inner tiles on a colour grid to the nine colours that appear on the dice wins. I adapted this game for my project to play against a timer countdown.
 
 ### Wireframes
 [Wireframes](https://github.com/Catrionamcd/Colour-Sort-Puzzle/tree/master/assets/wireframes)
@@ -47,13 +47,38 @@ The button will change to a RE-START button and a countdown timer will start cou
 ![alt text](assets/documentation/Restart-Btn.png)
 
 #### Timer
-As soon as the start button is pressed the timer will start counting down from five minutes, as sson as 03 secs is reached the time will be displayed in red.
+As soon as the start button is pressed the timer will start counting down from five minutes, as soon as 30 seconds are reached the time will be displayed in red.
  
 
-![alt text](assets/documentation/Timer.png) ![alt text](assets/documentation/30Sec-Timer.png)
+![alt text](assets/documentation/30Sec-Timer.png)
 
+#### Colour Dice Grid
 
- 
+This is the small er of the two colour grids. It is madeup of nine coloured tiles, in three rows and three columns. Once the START button is pressed the colours on this dice will be mix up. These are the colours that have to be matched.
+
+![alt text](assets/documentation/Colour-Dice-Grid.png)
+
+#### Main Colour Grid
+
+This is the main section of the game. This is where the player will move the colour tiles around the grid to try match the colours on the dice grid. On a desktop the tiles can be moved by clicking on them. On other devices the tiles can be moved by touch. There are six different colours with four tiles of each colour. There is also a blank space to allow the player to move the tiles around the grid. Only tiles beside the blank space can be moved. If a tile, that is not beside a blank space, is clicked, the tiles will shake to alert the user that this tile cannot be moved. The tiles that have to match the dice tiles are the nine inner tiles. A dotted line border, the same as the dotted line border around the dice, is displayed around this area to inform the player that these are the tiles that have to be matched. 
+
+ ![alt text](assets/documentation/Main-Colour-Grid.png)
+
+#### Game Progress
+
+Along with the timer countdown, the player is also shown how many tiles are matched as they are playing the game and how many tiles have been moved in the game. If the player wants to play again they can try improve on their time or maybe the amount of tiles it took to complete the game.
+
+![alt text](assets/documentation/Tiles-Match-Move.png)
+
+#### End Of Game Messages
+
+If the player matches all nine inner tiles within the 5 minutes, the game will stop, a congratulatory message will be displayed. The time taken to match all nine tiles will be displayed on the screen along with the number of tiles matched and the tiles moved to achieve that match. The re-start button will be set back to start.
+
+![alt text](assets/documentation/Congratulation-Message.png)
+
+If, however, the player is unable to match all nine tiles within the five minutes, a message will be displayed to inform them and they will get a chance to play again.
+
+![alt text](assets/documentation/Sorry-Message.png)
 
 ### Features Left to Implement
 * Leader Board Page - In the original desgin of the game, I had hoped to allow the user to enter their name and their scores, time taken to complete the puzzle and the amount of moves made. These details would be displayed on a Leader Board screen with a list of other players. I had planned to display up to 6 names. This list would only be stored for the duration of the game.
