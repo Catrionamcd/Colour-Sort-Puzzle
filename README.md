@@ -112,11 +112,11 @@ If, however, the player is unable to match all nine tiles within the five minute
 ![alt text](assets/documentation/Sorry-Message.png)
 
 ### Features Left to Implement
-* Leader Board Page - In the original desgin of the game, I had hoped to allow the user to enter their name and their scores, time taken to complete the puzzle and the amount of moves made. These details would be displayed on a Leader Board screen with a list of other players. I had planned to display up to 6 names. This list would only be stored for the duration of the game.
+* Leader Board Page - In the original design of the game, I had hoped to allow the user to enter their name and their scores, time taken to complete the puzzle and the amount of moves made. These details would be displayed on a Leader Board screen with a list of other players. I had planned to display up to 6 names. This list would only be stored for the duration of the game.
 ### Future features
 * Levels of difficulty - the player could be presented with a choice as to  what level of difficulty they would like to play. This could be determined by the countdown time. There could be three different levels with a different countdown time for solving the puzzle. I have a countdown of 5 minutes, that could be the intermediate level. For those who need a bit more time, possible 7 minutes and for those that really would like a challenge, possible 3 minutes.
 
-* The amount of coloured tiles could be extended.
+* The amount of coloured tiles could be extended to make the game more complex and challenging.
 * The coloured tiles could display images like cartoon characters for younger players to try match.
 
 ## Technologies
@@ -141,12 +141,12 @@ If, however, the player is unable to match all nine tiles within the five minute
 * Check once the 'x' to exit the window is pressed the window is closed.
 * If a player clicks outside the window check that the window closes.
 * As the owner, I tested to ensure that the rules of the game were clearly laid out and easy to access at any stage of the game.
-* As a player, the instructionsare easily accessed and easy to understand.
+* As a player, the instructions are easily accessed and easy to understand.
 
 #### Start Button
 * Test that both colour grids mix when the start button is pressed and the timer countdown begins.
 * Test that the start button becomes a re-start button once the game commences.
-* If the re-tart button is pressed in the middle of a game, the game should re-commence. All counters reset and timer starts again.
+* If the re-start button is pressed in the middle of a game, the game should re-commence. All counters reset and timer starts again.
 * Test that it reverts to a start button when the game finishes.
 
 #### Main Colour Grid
@@ -155,10 +155,12 @@ If, however, the player is unable to match all nine tiles within the five minute
 * Test random mix of colours.
 * Make sure there is a blank space for movement of tiles.
 * Allow tiles to move but only tiles beside the blank space.
-* If a tile that is not beside a blank space is clicked ensure that the tile shake function is executed to alert the player that this is a wrong move.
+* If a tile, that is not beside a blank space, is clicked ensure that the tile shake function is executed to alert the player that this is a wrong move.
+* As a player, the shake on the tile displays that this is an invalid move.
 * Make sure that the tile moves into the position of the blank space.
 * Each time a tile is move a check will have to occur to see if the nine inner tiles are matching the dice tiles that are stored in an array.
 * If all nine inner tiles match the dice tiles, ensure that the timer ends and a message is displayed, otherwise game continues.
+* Displaying the message demonstrates to the player that the match is complete and they have won the game, other wise their time is up.
 
 #### Dice Grid
 
@@ -215,7 +217,7 @@ CSS
 
 #### Responsive Design & Styling
 
-I tried nummerous different backgrounds for the game but felt that there was so many colours in the tiles already that it didnt need a background. I also felt that any background I tried, no matter how subtle detracted from the game.
+I tried numerous different backgrounds for the game but felt that there was so many colours in the tiles already that it didnt need a background. I also felt that any background I tried, no matter how subtle, detracted from the game.
 
 I also felt that the game lends itself better to a mobile phone, hence the reason why I tried to have as much of the information visible for a mobile while playing the game. For an Ipad, I would consider the screen height along with the screen width in my media queries if I had had more time.
 
@@ -225,7 +227,7 @@ When playing the physical game, the dice never seemed to throw up more than 4 of
 
 #### Tile Id's
 
-Each tile in both grids is a unique div that is created in javascript and has a sequential number as it id. At first, I had the main colour tile grid appearing on the left hand side of the screen and the dice on the right. My mentor pointed out that it might be better to have the dice appear first. It wasnt until I made the change that I realised that at the begining of the function to create the dice grid I was initialising the tile id, which meant that all nine of the dice tile divs had the same div id as the first nine tiles in the main grid. Needles to say, it presented some very strange results in testing. When I clicked a tile to be moved, the dice tile moved instead. I now initalise the tile id at the begining of the javascript file only and each tile div now has its own unique id.
+Each tile in both grids is a unique div that is created in javascript and has a sequential number as it's id. At first, I had the main colour tile grid appearing on the left hand side of the screen and the dice on the right. My mentor pointed out that it might be better to have the dice appear first. It wasn't until I made the change that I realised that at the begining of the function to create the dice grid I was initialising the tile id, which meant that all nine of the dice tile divs had the same div id as the first nine tiles in the main grid. Needles to say, it presented some very strange results in testing. When I clicked a tile to be moved, the dice tile moved instead. I now initalise the tile id at the begining of the javascript file only and each tile div now has its own unique id.
 
 
 ## Deployment
@@ -249,7 +251,7 @@ The live link can be found here - https://catrionamcd.github.io/Colour-Sort-Puzz
 * Stack Overflow.
 * YouTube Tutorial Countdown Timer.
 * My mentor Maria Hynes who gave me great encouragement and advice throughout the project.
-* My family, who all helped with the testing and playing the game on their own devices and also helped with the logic of some parts of the game.
+* My family, who all helped with the testing and played the game on their own devices and also helped with the logic of some parts of the game.
 
 
 ### Content
