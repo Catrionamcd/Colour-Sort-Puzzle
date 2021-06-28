@@ -33,26 +33,8 @@ body {
     position: absolute;
 }
 
-/*  This is the Rule/Instruction button which when pressed will open up the 
-    modal window with the instructions of the game
-*/
 
-/* #btn-instruction {
-    margin-top: 2px;
-    margin-left: 2px;
-    margin-bottom: 20px;
-    text-transform :uppercase;
-    position: absolute;
-    top: 0px;
-    left: 0px; 
-    background-color: slategrey;
-    font-size: 1rem;
-    font-weight: bolder;
-    color : white;
-}
-*/
-
-/* The container for the START button & START button
+/* The container for the START button & rules button
 */
 
 .btn-area {
@@ -69,6 +51,10 @@ body {
     text-align: center;
 }
 
+/*  This is the Rule/Instruction button which when pressed will open up the 
+    modal window with the instructions of the game
+*/
+
 #btn-instruction {
     margin-top: 10px;
     margin-left: 2px;
@@ -81,6 +67,8 @@ body {
     color : white;
 }
  
+/* This is the START button for the game */
+
 #btn-start {
     margin-top: 10px;
     margin-left: 2px;
@@ -254,10 +242,6 @@ body {
         font-size: 1.5rem;
     }
 
-    /*#btn-instruction {
-        margin-bottom: 10px;
-    }
-    */
     .btn-container {
         height: 30px;
         width: 100px;
@@ -275,14 +259,7 @@ body {
         font-size : 0.75rem;
 
     }
-   /* #btn-start {
-        margin-top: 5px;
-        margin-left: 2px;
-        border: 1px transparent;
-        font-size: 1rem;
-    }
-    */
-
+   
     .progress-area {
         font-size : 100%;
     }
@@ -295,8 +272,13 @@ body {
 
 /*  Media Queries for a larger screen  */
 
-@media screen and (min-width: 1200px){
-    
+@media screen and (min-width: 1300px){
+
+    #game-name {
+        margin-top: 80px;
+        margin-bottom: 20px;
+    }
+
     #grid-area {
         margin-top: 40px;
     }

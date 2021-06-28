@@ -10,7 +10,7 @@ Once the colour tiles are matched the timer will stop and a congratulatory messa
 
 There is also an instruction button at the top of the screen. Once this button is pressed a modal window with instructions will explain the rules of the game. There will be an exit from this window back to the game.
 
-![alt text](assets/images/multi-device.png)
+![alt text](assets/documentation/Multi-Device.png)
 
 
 ## Design Process
@@ -21,14 +21,38 @@ The inspiration for this project came from a game called Rubiks Race.
  This game is in our home for many years and all members of the family, big and small have had hours of enjoyment playing it. With the physical game you can play against another player. The first to solve the puzzle by matching the nine inner tiles on a colour grid to the nine colours that appear on the dice wins. I adapted this game for my project to play against a timer countdown.
 I set up a test repository to test if I could build the grid of colours using javascript. Some of the challenges in the javascript module with Code Institute also gave me inspiration. There are challenges with coloured tiles and clickable buttons. 
 
-
 ### Wireframes
 [Wireframes](https://github.com/Catrionamcd/Colour-Sort-Puzzle/tree/master/assets/wireframes)
+
+![Desktop Wireframe](assets/wireframes/Desktop-Wireframe.png)
+![IPad Wireframe](assets/wireframes/IPad-Wireframe.png)
+![Mobile Wireframe](assets/wireframes/Mobile-Wireframe.png)
+
+The design was changed to place the rules button beside the start button to make it more visible as some players did not see the rules button on the top left hand side of the screen. 
+## User Stories
+
+* As site owner I wanted to:
+  * Create a fun game that would replicate the physical game that we 
+enjoyed with family and friends.
+  * Make it inviting and colourful.
+  * Make it easy to navigate and play.
+  * Make it exciting by playing against a timer.
+  * Make the player want to play again by beating their own score.
+  * To be able to play on many different devices.
+  * Players of all ages and abilities can play.
+
+* For the player:
+  * Have a fun game to challenge yourself.
+  * Clearly see the rules of the game. 
+  * Clearly see your progress as you work through the challenge.
+  * Make it attractive with bright colours and simpe layout.
+  * Make it exciting by playing against a timer countdown.
+  * Play against yourself by playing a second time to try improve on your 
+time and tiles moved.
+  * Easy to re-start if you feel you cannot complete the challenge.
+  * Easy to start a second challenge once one is completed.
 ## Features
-
-
 ### Existing Features
-
 #### Rules/Instructions
 A rules button is displayed beside the start button at top of the screen.
 
@@ -116,6 +140,8 @@ If, however, the player is unable to match all nine tiles within the five minute
 * When the rules button is clicked a modal window should appear with the rules/instruction of the game.
 * Check once the 'x' to exit the window is pressed the window is closed.
 * If a player clicks outside the window check that the window closes.
+* As the owner, I tested to ensure that the rules of the game were clearly laid out and easy to access at any stage of the game.
+* As a player, the instructionsare easily accessed and easy to understand.
 
 #### Start Button
 * Test that both colour grids mix when the start button is pressed and the timer countdown begins.
@@ -143,35 +169,63 @@ If, however, the player is unable to match all nine tiles within the five minute
 #### Counters
 * Test that each time a tile is move the tile move counter accumulates.
 * Test that each time a tiles is matched that the tile matched counter accumulates.
+* As a player, you can see your progress as you try to complete the challenge.
 
 #### Timer
 * Ensure that the time is counting down properly.
 * Once the timer hits 30 seconds on the countdown the time displayed should turn red.
+* As a player, it makes it more exciting when the timer goes red as you realise your time is nearly up.
 * Once time reaches zero the game stops and a message is displayed.
 
 #### Messages
 * Ensure the correct message is being displayed depending on the outcome of the game.
 * Once the game is re-started the message should no longer appear on the screen.
+### Browser Testing
+Tested that the game ran on multiple browsers including:
+ * Google Chrome
+ * Firefox
+ * Safari
+ * Brave
+ * Epic
+
+ Tested on multiple device for responsiveness.
 
 ### Validator Testing
 HTML
 * No errors were found in the code when passing through the W3C Markup Validation Service,
 [HTML](https://validator.w3.org/)
 
+![alt text](assets/documentation/HTML-Code-Validator.png)
+
 CSS
 * No errors were found in the code when passing through the official (Jigsaw) validator,
  [CSS](https://jigsaw.w3.org/css-validator/)
+
+ ![alt text](assets/documentation/CSS-Code-Validator.png)
+
 
  JavaScript
  * No errors were found in the code when passing through the JSHint, a JavaScript Code Quality Tool,
  [JavaScript](https://jshint.com/)
 
+ ![alt text](assets/documentation/JavaScript-Code-Validator.png)
+
 
 ### Bug Fixes
 
+#### Responsive Design & Styling
+
+I tried nummerous different backgrounds for the game but felt that there was so many colours in the tiles already that it didnt need a background. I also felt that any background I tried, no matter how subtle detracted from the game.
+
+I also felt that the game lends itself better to a mobile phone, hence the reason why I tried to have as much of the information visible for a mobile while playing the game. For an Ipad, I would consider the screen height along with the screen width in my media queries if I had had more time.
+
 #### Dice Colour Grid
 
+When playing the physical game, the dice never seemed to throw up more than 4 of one colour, however the digital game soon show me that not only was this possible but seem to happen more than you would think. This, of course, would make the game unplayable as there are only 4 colours tiles of each colour on the main grid. I had to then factor this into the code. In the function to mix up the dice colours, I had to check if the max number of colours was exceeded and if so, I had to mix the colours again. 
 
+#### Tile Id's
+
+Each tile in both grids is a unique div that is created in javascript and has a sequential number as it id. At first, I had the main colour tile grid appearing on the left hand side of the screen and the dice on the right. My mentor pointed out that it might be better to have the dice appear first. It wasnt until I made the change that I realised that at the begining of the function to create the dice grid I was initialising the tile id, which meant that all nine of the dice tile divs had the same div id as the first nine tiles in the main grid. Needles to say, it presented some very strange results in testing. When I clicked a tile to be moved, the dice tile moved instead. I now initalise the tile id at the begining of the javascript file only and each tile div now has its own unique id.
 
 
 ## Deployment
@@ -191,6 +245,14 @@ The live link can be found here - https://catrionamcd.github.io/Colour-Sort-Puzz
 
 ## Credits
 
+* W3Schools for the modal window and the error tile shake.
+* Stack Overflow.
+* YouTube Tutorial Countdown Timer.
+* My mentor Maria Hynes who gave me great encouragement and advice throughout the project.
+* My family, who all helped with the testing and playing the game on their own devices and also helped with the logic of some parts of the game.
+
+
 ### Content
 
-### Media
+I based the game on Rubik's Race, a really fun game that everyone can enjoy.
+
